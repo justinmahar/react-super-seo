@@ -26,8 +26,6 @@ Read the **[official documentation](https://devboldly.github.io/react-super-seo/
 
 This component adds SEO (search engine optimization) metadata tags to the `head` element for you. It includes full support for [OpenGraph](https://ogp.me/), [Twitter Cards](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards), and [Google](https://support.google.com/webmasters/answer/79812?hl=en), as well as support for numerous popular meta tags, and any custom tags you might want to add beyond that!
 
-👁️ **[Live Demo](https://devboldly.github.io/react-super-seo/SuperSEO#usage)**
-
 ### Why Super SEO?
 
 There are no less than a hundred different React SEO components floating around the web, and most have half-baked or zero support for OpenGraph, and many don't support Twitter Cards at all. Worse, documentation for them is sparse.
