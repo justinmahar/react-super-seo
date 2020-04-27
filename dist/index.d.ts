@@ -1,2 +1,1 @@
-export * from './components/ExampleComponent';
-export * from './hooks/useExampleCounter';
+export * from './components/SuperSEO';
