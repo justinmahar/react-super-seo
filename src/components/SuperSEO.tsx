@@ -143,7 +143,7 @@ export interface SuperSEOProps {
    * Provide children to add custom meta tags in addition to the ones above, or for anything else you'd
    * like to add to `head`. Children are rendered directly inside head.
    */
-  children?: React.ReactChild;
+  children?: React.ReactNode;
 }
 
 /**
