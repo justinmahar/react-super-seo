@@ -12,7 +12,7 @@ function renderComponent(props: SuperSEOProps, children: React.ReactNode = undef
 describe('SuperSEO', () => {
   test('should render without crashing', async () => {
     const props: SuperSEOProps = { title: 'Test', description: 'Testing SEO component' };
-    const children: React.ReactNode = undefined;
+    const children: any = undefined;
     const renderResult = renderComponent(props, children);
     expect(renderResult.container).toBeInTheDocument();
   });
