@@ -9,21 +9,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __importStar(require("react"));
 /**
- * Example component that renders the text its given.
- *
- * @returns The rendered component.
+ * Example component that displays whatever text you provide in a div and registers an onClick handler.
  */
 function ExampleComponent(props) {
-    return (React.createElement("div", { style: {
-            padding: 10,
-            border: 'solid 2px #0F52BA',
-            color: '#0F52BA',
-            backgroundColor: '#D9F1FF',
-            display: 'inline-block',
-            fontWeight: 'bold',
-            fontFamily: 'Roboto',
-            userSelect: 'none',
-        } }, typeof props.text !== 'undefined' ? props.text : 'Example Component'));
+    return (React.createElement("div", { onClick: props.onClick, "data-testid": "example-component" }, props.text));
 }
-exports.ExampleComponent = ExampleComponent;
-ExampleComponent.defaultProps = {};
+exports.default = ExampleComponent;
+ExampleComponent.defaultProps = {
+    onClick: function () { return console.log('Click!'); },
+    text: 'Example text.',
+};

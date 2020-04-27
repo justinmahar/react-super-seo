@@ -4,4 +4,4 @@ function __export(m) {
 }
 Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./components/ExampleComponent"));
-__export(require("./hooks/useExample"));
+__export(require("./hooks/useExampleCounter"));

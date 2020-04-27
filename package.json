@@ -1,9 +1,9 @@
 {
-  "name": "@devboldly/react-library-starter",
+  "name": "react-super-seo",
   "version": "1.0.0",
   "author": "Dev Boldly <devboldly@gmail.com>",
-  "description": "A template to build, test, and share React components and hooks easily. Uses Storybook, Jest, and more.",
-  "homepage": "https://github.com/devboldly/react-library-starter#readme",
+  "description": "The React SEO component that handles metadata so you don't have to. Supports Google, OpenGraph, Twitter, and beyond. 🚀",
+  "homepage": "https://github.com/devboldly/react-super-seo#readme",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -27,13 +27,15 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devboldly/react-library-starter.git"
+    "url": "git+https://github.com/devboldly/react-super-seo.git"
   },
   "bugs": {
-    "url": "https://github.com/devboldly/react-library-starter/issues"
+    "url": "https://github.com/devboldly/react-super-seo/issues"
   },
   "keywords": [],
-  "dependencies": {},
+  "dependencies": {
+    "react-helmet": "^6.0.0"
+  },
   "peerDependencies": {
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
@@ -51,6 +53,7 @@
     "@types/node": "^13.9.0",
     "@types/react": "^16.9.23",
     "@types/react-dom": "^16.9.5",
+    "@types/react-helmet": "^5.0.15",
     "@types/webpack": "^4.41.12",
     "@typescript-eslint/eslint-plugin": "^2.23.0",
     "babel-loader": "^8.0.6",
@@ -66,7 +69,6 @@
     "jest": "^25.1.0",
     "prettier": "^1.19.1",
     "react-ga": "^2.7.0",
-    "react-helmet": "^6.0.0",
     "react-test-renderer": "^16.13.0",
     "ts-jest": "^25.2.1",
     "ts-loader": "^6.2.1",

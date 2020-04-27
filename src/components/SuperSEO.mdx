@@ -1,0 +1,384 @@
+---
+name: SuperSEO
+route: /SuperSEO
+# menu: Components
+---
+
+import { Playground, Props } from 'docz';
+import { SuperSEO } from './SuperSEO';
+
+<h1>SuperSEO</h1>
+
+## Description
+
+The React SEO component that handles metadata so you don't have to. Supports [Google](https://support.google.com/webmasters/answer/79812?hl=en), [OpenGraph](https://ogp.me/), [Twitter](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards), and beyond. 🚀
+
+Supports the following:
+- `title` and `description`
+- [OpenGraph](https://ogp.me/) and [Twitter Cards](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards)
+- [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) `lang` attribute in `html` element
+- Google site verification
+- Robots and [googlebot](https://support.google.com/webmasters/answer/79812?hl=en) configuration
+- [Google-specific](https://support.google.com/webmasters/answer/79812?hl=en) meta tags
+- Charset, viewport, and contentType
+- [Rating](https://support.google.com/webmasters/answer/79812?hl=en) (for adult content)
+- **Everything else!** Just wrap custom meta tags with `SuperSEO`
+
+Uses sensible fallbacks where possible and features automatic [MIME type inference](/list-of-mime-types) for media URLs.
+
+Includes full TypeScript type definitions and rich documentation, inside and out. 🙌
+
+## Usage
+
+Provide as little as a `title` and `description`, and go from there.
+
+```jsx
+import { SuperSEO } from 'react-super-seo';
+```
+
+<Playground>
+  <div>The SuperSEO component is being used on this page. Try changing the title below.</div>
+  <SuperSEO
+    title="SEO | React Super SEO"
+    description="React SEO component with OpenGraph and Twitter Cards support."
+    lang="en"
+    openGraph={{
+      ogImage: {
+        ogImage: 'http://placekitten.com/1200/630',
+        ogImageAlt: 'Kittens',
+        ogImageWidth: 1200,
+        ogImageHeight: 630,
+        ogImageType: 'image/jpeg',
+      },
+    }}
+    twitter={{
+      twitterSummaryCard: {
+        summaryCardImage: 'http://placekitten.com/1200/630',
+        summaryCardImageAlt: 'Kittens',
+        summaryCardSiteUsername: 'devboldly',
+      },
+    }}
+  />
+</Playground>
+
+<small>Note: You can edit the source above. Your changes will be rendered immediately.</small>
+
+## Props
+
+<Props of={SuperSEO} />
+
+> Note: Expand each prop for more information.
+
+### `openGraph` Prop (OpenGraphMetadata)
+
+The `openGraph` prop is an object with any of the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| ogTitle | `string` | **(Required)** `og:title` - The title of your object as it should appear within the graph, e.g., "The Rock". |
+| ogType | `string` | **(Required)** `og:type` - The type of your object. Supports `article`, `book`, `profile`, `website`. Specify the related properties in `ogTypeObject`. If another type is provided, use a [`MetaPropertiesFunction`](#metapropertiesfunction) for the `ogTypeObject` to specify your meta properties for the type. This function should return an array of [`MetaProperty`](#metaproperty) in the format `{property: string, content: string}`. |
+| ogTypeObject | [`OpenGraphTypeArticle`](#opengraphtypearticle) &#124; [`OpenGraphTypeBook`](#opengraphtypebook) &#124; [`OpenGraphTypeProfile`](#opengraphtypeprofile) &#124; [`OpenGraphTypeWebsite`](#opengraphtypewebsite) &#124; [`MetaPropertiesFunction`](#metapropertiesfunction) | **(Required)** The meta properties object for the type specified. Use {} to default to "website". |
+| ogImage | [`OpenGraphImage`](#opengraphimage) &#124; [`OpenGraphImage[]`](#opengraphimage) | **(Required)** `og:image` - An image URL which should represent your object within the graph. Provide an array for multiple images. |
+| ogUrl | `string` | **(Required)** `og:url` - The canonical URL of your object that will be used as its permanent ID in the graph, e.g., `"http://www.imdb.com/title/tt0117500/"`. |
+| ogAudio | [`OpenGraphAudio`](#opengraphaudio) &#124; [`OpenGraphAudio[]`](#opengraphaudio) | (Optional) `og:audio` - Audio file(s) to accompany this object. |
+| ogDescription | `string` | (Optional) `og:description` - A one to two sentence description of your object. |
+| ogDeterminer | `'a'` &#124; `'an'` &#124; `'the'` &#124; `''` &#124; `'auto'` | (Optional) `og:determiner` - The word that appears before this object's title in a sentence. An enum of (a, an, the, "", auto). If auto is chosen, the consumer of your data should chose between "a" or "an". Default is "" (blank). |
+| ogLocale | `string` | (Optional) `og:locale` - The locale these tags are marked up in. Of the format language_TERRITORY. Default is en_US. |
+| ogLocaleAlternate | `string[]` | (Optional) `og:locale:alternate` - An array of other locales this page is available in. |
+| ogSiteName | `string` | (Optional) `og:site_name` - If your object is part of a larger web site, the name which should be displayed for the overall site. e.g., "IMDb". |
+| ogVideo | [`OpenGraphVideo`](#opengraphvideo) &#124; [`OpenGraphVideo[]`](#opengraphvideo) | (Optional) `og:video` - Video file(s) that complement this object. |
+| fbAppId | `string` | (Optional) `fb:app_id` - The Facebook App ID lets Facebook know the identify of your site, which provides additional benefits like social analytics, comments moderation and authentication capabilities to your site. |
+
+#### `ogTypeObject` Types
+
+##### OpenGraphTypeArticle
+
+An object containing any of the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| articlePublishedTime | `string` | `article:published_time` - datetime - When the article was first published. |
+| articleModifiedTime | `string` | `article:modified_time` - datetime - When the article was last changed. |
+| articleExpirationTime | `string` | `article:expiration_time` - datetime - When the article is out of date after. |
+| articleAuthor | `string[]` | `article:author` - string array - URI(s) to writers of the article. |
+| articleSection | `string` | `article:section` - string - A high-level section name. E.g. Technology. For blogs, this should be the category. |
+| articleTag | `string[]` | `article:tag` - string array - Tag words associated with this article. |
+
+##### OpenGraphTypeBook
+
+An object containing any of the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| bookAuthor | `string[]` | `book:author` - string array - URI(s) to writers of the book. |
+| bookIsbn | `string` | `book:isbn` - string - The ISBN |
+| bookReleaseDate | `string` | `book:release_date` - datetime - The date the book was released. |
+| bookTag | `string[]` | `book:tag` - string array - Tag words associated with this book. |
+
+##### OpenGraphTypeProfile
+
+An object containing any of the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| profileFirstName | `string` | `profile:first_name` - string - A name normally given to an individual by a parent or self-chosen. |
+| profileLastName | `string` | `profile:last_name` - string - A name inherited from a family or marriage and by which the individual is commonly known. |
+| profileUsername | `string` | `profile:username` - string - A short unique string to identify them. |
+| profileGender | `string` | `profile:gender` - enum(male, female) - Their gender. |
+
+##### OpenGraphTypeWebsite
+
+Provide an empty object to specify the website type.
+
+##### MetaPropertiesFunction
+
+A function with the following signature:
+
+```jsx
+() => MetaProperty[]
+```
+
+This function returns an array of [MetaProperty](#metaproperty).
+
+This allows you to use any of the other [OpenGraph types available](https://ogp.me/#types), such as music types or video types.
+
+###### MetaProperty
+
+An object containing any of the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| property | `string` | The meta property name |
+| content | `string` | The meta property content |
+
+#### ogImage Types
+
+##### OpenGraphImage
+
+An object containing any of the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| ogImage | `string` | `og:image` - An image URL which should represent your object within the graph. |
+| ogImageSecureUrl | `string` | `og:image:secure_url` - An alternate url to use if the webpage requires HTTPS. |
+| ogImageType | `string` | `og:image:type` - A MIME type for this image, such as `image/jpeg` for JPG or `image/png` for PNG. If not provided, the MIME type will be inferred from the extension (e.g. `.jpg`, `.png`) at the end of the URL. |
+| ogImageWidth | `number` &#124; `string` | `og:image:width` - The number of pixels wide. |
+| ogImageHeight | `number` &#124; `string` | `og:image:height` - The number of pixels high. |
+| ogImageAlt | `string` | `og:image:alt` - A description of what is in the image (not a caption). If the page specifies an og:image it should specify og:image:alt. |
+
+#### ogAudio Types
+
+##### OpenGraphAudio
+
+An object containing any of the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| ogAudio | `string` | `og:audio` - A audio URL which should represent your object within the graph. |
+| ogAudioSecureUrl | `string` | `og:audio:secure_url` - An alternate url to use if the webpage requires HTTPS. |
+| ogAudioType | `string` | `og:audio:type` - A MIME type for this audio, such as `audio/mpeg3` for MP3. If not provided, the MIME type will be inferred from the extension (e.g. `.mp3`) at the end of the URL. |
+
+#### ogVideo
+
+##### OpenGraphVideo
+
+An object containing any of the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| ogVideo | `string` | `og:video` - A video URL which should represent your object within the graph. |
+| ogVideoSecureUrl | `string` | `og:video:secure_url` - An alternate url to use if the webpage requires HTTPS. |
+| ogVideoType | `string` | `og:video:type` - A MIME type for this video, such as `video/mp4` for MP4. If not provided, the MIME type will be inferred from the extension (e.g. `.mp4`) at the end of the URL. |
+| ogVideoWidth | `number` &#124; `string` | `og:video:width` - The number of pixels wide. |
+| ogVideoHeight | `number` &#124; `string` | `og:video:height` - The number of pixels high. |
+
+### `twitter` Prop (TwitterMetadata)
+
+The `twitter` prop is an object with one of the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| twitterSummaryCard | [`TwitterSummaryCardType`](#twittersummarycardtype) | `twitter:card` value `summary` - [Summary Card](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary) - Gives the reader a preview of the content before clicking through to your website. |
+| twitterSummaryCardWithLargeImage | [`TwitterSummaryCardWithLargeImageCardType`](#twittersummarycardwithlargeimagecardtype) | `twitter:card` value `summary_large_image` - [Summary Card with Large Image](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary-card-with-large-image) - Features a large, full-width prominent image alongside a tweet. |
+| twitterPlayerCard | [`TwitterPlayerCardType`](#twitterplayercardtype) | `twitter:card` value `player` - [Player Card](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/player-card) - Embed a playable video or audio clip into a Tweet. |
+| twitterAppCard | [`TwitterAppCardType`](#twitterappcardtype) | `twitter:card` value `app` - [App Card](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/app-card) - Provides mobile app information along with a tweet to drive installs. |
+
+> Important: Specify only one of the cards.
+
+#### TwitterSummaryCardType
+
+An object containing any of the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| summaryCardSiteUsername | `string` | (Optional) `twitter:site` - The Twitter @username the card should be attributed to. |
+| summaryCardTitle | `string` | **(Required)** `twitter:title` - A concise title for the related content. |
+| summaryCardDescription | `string` | (Optional) `twitter:description` - A description that concisely summarizes the content as appropriate for presentation within a Tweet. You should not re-use the title as the description or use this field to describe the general services provided by the website. |
+| summaryCardImage | `string` | (Optional) `twitter:image` - A URL to a unique image representing the content of the page. You should not use a generic image such as your website logo, author photo, or other image that spans multiple pages. Images for this Card support an aspect ratio of 1:1 with minimum dimensions of 144x144 or maximum of 4096x4096 pixels. Images must be less than 5MB in size. The image will be cropped to a square on all platforms. JPG, PNG, WEBP and GIF formats are supported. Only the first frame of an animated GIF will be used. SVG is not supported. |
+| summaryCardImageAlt | `string` | (Optional) `twitter:image:alt` - A text description of the image conveying the essential nature of an image to users who are visually impaired. Maximum 420 characters. |
+
+#### TwitterSummaryCardWithLargeImageCardType
+
+An object containing any of the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| summaryCardSiteUsername | `string` | (Optional) `twitter:site` - The Twitter @username the card should be attributed to. |
+| summaryCardTitle | `string` | **(Required)** `twitter:title` - A concise title for the related content. |
+| summaryCardDescription | `string` | (Optional) `twitter:description` - A description that concisely summarizes the content as appropriate for presentation within a Tweet. You should not re-use the title as the description or use this field to describe the general services provided by the website. |
+| summaryCardImage | `string` | (Optional) `twitter:image` - A URL to a unique image representing the content of the page. You should not use a generic image such as your website logo, author photo, or other image that spans multiple pages. Images for this Card support an aspect ratio of 2:1 with minimum dimensions of 300x157 or maximum of 4096x4096 pixels. Images must be less than 5MB in size. JPG, PNG, WEBP and GIF formats are supported. Only the first frame of an animated GIF will be used. SVG is not supported. |
+| summaryCardImageAlt | `string` | (Optional) `twitter:image:alt` - A text description of the image conveying the essential nature of an image to users who are visually impaired. Maximum 420 characters. |
+
+#### TwitterPlayerCardType
+
+An object containing any of the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| playerCardTitle | `string` | **(Required)** `twitter:title` - The title of your content as it should appear in the card |
+| playerCardSiteUsername | `string` | **(Required)** `twitter:site` - The Twitter @username the card should be attributed to. |
+| playerCardDescription | `string` | (Optional) `twitter:description` - A description of the content in a maximum of 200 characters |
+| playerCardPlayer | `string` | **(Required)** `twitter:player` - HTTPS URL to iFrame player. This must be a HTTPS URL which does not generate active mixed content warnings in a web browser. The audio or video player must not require plugins such as Adobe Flash. |
+| playerCardPlayerWidth | `number` &#124; `string` | **(Required)** `twitter:player:width` - Width of iFrame specified in twitter:player in pixels |
+| playerCardPlayerHeight | `number` &#124; `string` | **(Required)** `twitter:player:height` - Height of iFrame specified in twitter:player in pixels |
+| playerCardImage | `string` | **(Required)** `twitter:image` - Image to be displayed in place of the player on platforms that don’t support iFrames or inline players. You should make this image the same dimensions as your player. Images with fewer than 68,600 pixels (a 262x262 square image, or a 350x196 16:9 image) will cause the player card not to render. Images must be less than 5MB in size. JPG, PNG, WEBP and GIF formats are supported. Only the first frame of an animated GIF will be used. SVG is not supported. |
+| playerCardImageAlt | `string` | (Optional) `twitter:image:alt` - A text description of the image conveying the essential nature of an image to users who are visually impaired. Maximum 420 characters. |
+
+#### TwitterAppCardType
+
+An object containing any of the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| appCardSiteUsername | `string` | **(Required)** `twitter:site` - The Twitter @username the card should be attributed to. |
+| appCardDescription | `string` | (Optional) `twitter:description` - You can use this as a more concise description than what you may have on the app store. This field has a maximum of 200 characters |
+| appCardAppIdIphone | `string` | **(Required)** `twitter:app:id:iphone` - String value, and should be the numeric representation of your app ID in the App Store (.i.e. “307234931”) |
+| appCardAppIdIpad | `string` | **(Required)** `twitter:app:id:ipad` - String value, should be the numeric representation of your app ID in the App Store (.i.e. “307234931”) |
+| appCardAppIdGoogleplay | `string` | **(Required)** `twitter:app:id:googleplay` - String value, and should be the numeric representation of your app ID in Google Play (.i.e. “com.android.app”) |
+| appCardAppUrlIphone | `string` | (Optional) `twitter:app:url:iphone` - Your app’s custom URL scheme (you must include ”://” after your scheme name) |
+| appCardAppUrlIpad | `string` | (Optional) `twitter:app:url:ipad` - Your app’s custom URL scheme |
+| appCardAppUrlGoogleplay | `string` | (Optional) `twitter:app:url:googleplay` - Your app’s custom URL scheme |
+| appCardAppNameIphone | `string` | (Optional) `twitter:app:name:iphone` - Your app’s name (iphone). |
+| appCardAppNameIpad | `string` | (Optional) `twitter:app:name:ipad` - Your app’s name (ipad). |
+| appCardAppNameGoogleplay | `string` | (Optional) `twitter:app:name:googleplay` - Your app’s name (googleplay). |
+| appCardAppCountry | `string` | (Optional) `twitter:app:country` - If your application is not available in the US App Store, you must set this value to the two-letter country code for the App Store that contains your application. |
+
+### `google` Prop (GoogleMetadata)
+
+These are [special tags that Google understands](https://support.google.com/webmasters/answer/79812?hl=en). They help control how your site's pages appear in Search.
+
+Provide an object containing any of the following properties:
+
+| Property | Type | Description |
+|----------|------|-------------|
+| noSiteLinksSearchBox | `boolean` | (Optional) When users search for your site, Google Search results sometimes display a search box specific to your site, along with other direct links to your site. This tag tells Google not to show the sitelinks search box. |
+| noTranslate | `boolean` | (Optional) When Google recognizes that the contents of a page are not in the language that the user is likely to want to read, Google often provides a link to a translation in the search results. In general, this gives you the chance to provide your unique and compelling content to a much larger group of users. However, there may be situations where this is not desired. This meta tag tells Google that you don't want us to provide a translation for this page. |
+| noPageReadAloud | `boolean` | (Optional) Prevents web browsers from reading aloud the tagged page using the Google Assistant voice commands "Read this page" and "Read it." |
+
+## Custom Meta Tags
+
+There are many more meta tags not covered here, such as the once popular, now obsolete `keywords` meta tag (now ignored by search engines), and others which you may be interested in but are outside the scope of this project.
+
+If you need something not covered above, you can always provide them as children of `SuperSEO`.
+
+Anything you wrap in the `SuperSEO` component will be rendered to the `head` element for you. Sky's the limit. 🚀
+
+```jsx
+<SuperSEO
+  title="My Page"
+  description="An awesome page that does a lot of cool stuff"
+>
+  <meta name="custom-meta" content="my-value" />
+  <meta property="custom-meta-2" content="my-other-value" />
+</SuperSEO>
+```
+
+> Add your custom meta tags inside the SuperSEO component.
+
+## Examples
+
+### Fallbacks
+
+The following shows how fallbacks are used for OpenGraph:
+
+```jsx
+<SuperSEO
+  title="SEO | React Super SEO"
+  description="React SEO component with OpenGraph and Twitter Cards support."
+  lang="en"
+/>
+```
+
+This will be rendered as:
+
+```html
+<html lang="en" data-react-helmet="lang">
+  <head>
+    <title>SEO | React Super SEO</title>
+    <meta name="description" content="React SEO component with OpenGraph and Twitter Cards support." data-react-helmet="true" />
+    <meta property="og:title" content="SEO | React Super SEO" data-react-helmet="true" />
+    <meta property="og:type" content="website" data-react-helmet="true" />
+    <meta property="og:description" content="React SEO component with OpenGraph and Twitter Cards support." data-react-helmet="true" />
+  </head>
+  ...
+</html>
+```
+
+> Note: Twitter uses OpenGraph `og:title` and `og:description` as a fallback, so rendering Twitter meta properties is not necessary here.
+
+### Specifying OpenGraph and Twitter
+
+The following shows how you can specify `openGraph` and `twitter` props to build out SEO for each platform, with `description` and `title` fallbacks when not specified outright:
+
+```jsx
+<SuperSEO
+  title="SEO | React Super SEO"
+  description="React SEO component with OpenGraph and Twitter Cards support."
+  lang="en"
+  openGraph={{
+    ogImage: {
+      ogImage: 'http://placekitten.com/1200/630',
+      ogImageAlt: 'Kittens',
+      ogImageWidth: 1200,
+      ogImageHeight: 630,
+      ogImageType: 'image/jpeg',
+    },
+  }}
+  twitter={{
+    twitterSummaryCard: {
+      summaryCardImage: 'http://placekitten.com/1200/630',
+      summaryCardImageAlt: 'Kittens',
+      summaryCardSiteUsername: 'devboldly',
+    },
+  }}
+/>
+```
+
+This will be rendered as:
+
+```html
+<html lang="en" data-react-helmet="lang">
+  <head>
+    <title>SEO | React Super SEO</title>
+    <meta name="description" content="React SEO component with OpenGraph and Twitter Cards support." data-react-helmet="true" />
+    <meta property="og:title" content="SEO | React Super SEO" data-react-helmet="true" />
+    <meta property="og:type" content="website" data-react-helmet="true" />
+    <meta property="og:image" content="http://placekitten.com/1200/630" data-react-helmet="true" />
+    <meta property="og:image:url" content="http://placekitten.com/1200/630" data-react-helmet="true" />
+    <meta property="og:image:type" content="image/jpeg" data-react-helmet="true" />
+    <meta property="og:image:width" content="1200" data-react-helmet="true" />
+    <meta property="og:image:height" content="630" data-react-helmet="true" />
+    <meta property="og:image:alt" content="Kittens" data-react-helmet="true" />
+    <meta property="og:description" content="React SEO component with OpenGraph and Twitter Cards support." data-react-helmet="true" />
+    <meta property="twitter:card" content="summary" data-react-helmet="true" />
+    <meta property="twitter:site" content="devboldly" data-react-helmet="true" />
+    <meta property="twitter:title" content="SEO | React Super SEO" data-react-helmet="true" />
+    <meta property="twitter:description" content="React SEO component with OpenGraph and Twitter Cards support." data-react-helmet="true" />
+    <meta property="twitter:image" content="http://placekitten.com/1200/630" data-react-helmet="true" />
+    <meta property="twitter:image:alt" content="Kittens" data-react-helmet="true" />
+  </head>
+  ...
+</html>
+```
+
+> In this example, OpenGraph and Twitter Card titles and descriptions have been added automatically using `description`, since they weren't explicitly given.
