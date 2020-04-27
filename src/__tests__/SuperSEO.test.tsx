@@ -5,7 +5,7 @@ import { SuperSEO, SuperSEOProps } from '../components/SuperSEO';
 // Learn how to test React components:
 // https://testing-library.com/docs/react-testing-library/intro
 
-function renderComponent(props: SuperSEOProps, children: React.ReactNode = undefined): RenderResult {
+function renderComponent(props: SuperSEOProps, children: any = undefined): RenderResult {
   return render(<SuperSEO {...props}>{children}</SuperSEO>);
 }
 
