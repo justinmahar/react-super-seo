@@ -16,6 +16,12 @@
   </a>
 </p>
 
+## Documentation
+
+Read the **[official documentation](https://devboldly.github.io/react-super-seo/)**.
+
+👁️ **[Live Demo](https://devboldly.github.io/react-super-seo/SuperSEO#usage)**
+
 ## Overview
 
 This component adds SEO (search engine optimization) metadata tags to the `head` element for you. It includes full support for [OpenGraph](https://ogp.me/), [Twitter Cards](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards), and [Google](https://support.google.com/webmasters/answer/79812?hl=en), as well as support for numerous popular meta tags, and any custom tags you might want to add beyond that!
