@@ -20,6 +20,8 @@
 
 Read the **[official documentation](https://devboldly.github.io/react-super-seo/)**.
 
+[![Demo](./src/__docz__/images/demo.gif "Demo")](https://devboldly.github.io/react-super-seo/SuperSEO#usage)
+
 👁️ **[Live Demo](https://devboldly.github.io/react-super-seo/SuperSEO#usage)**
 
 ## Overview
