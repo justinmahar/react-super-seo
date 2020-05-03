@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
-    "@devboldly/react-devboldly-tools": "^1.0.14",
+    "@devboldly/react-devboldly-tools": "^1.0.15",
     "@storybook/addons": "^5.3.17",
     "@storybook/preset-typescript": "^2.1.0",
     "@storybook/react": "^5.3.17",
