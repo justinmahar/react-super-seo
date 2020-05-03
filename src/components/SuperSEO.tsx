@@ -147,13 +147,13 @@ export interface SuperSEOProps {
 }
 
 /**
- * See documentation: https://devboldly.github.io/react-super-seo
+ * See documentation: [SuperSEO](https://devboldly.github.io/react-super-seo/SuperSEO)
  *
  * An SEO component that adds a `title`, `description`, [OpenGraph](https://ogp.me/), and [Twitter Cards](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards) meta properties to the `head`.
  *
  * Also supports adding an [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) `lang` attribute to the `html` element.
  *
- * Uses sensible fallbacks where possible and features automatic [MIME type inference](/list-of-mime-types) for media URLs.
+ * Uses sensible fallbacks where possible and features automatic [MIME type inference](https://devboldly.github.io/react-super-seo/list-of-mime-types) for media URLs.
  */
 export function SuperSEO(props: SuperSEOProps): JSX.Element {
   const title = props.title;
