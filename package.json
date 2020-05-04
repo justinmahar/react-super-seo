@@ -1,6 +1,6 @@
 {
   "name": "react-super-seo",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "DevBoldly <devboldly@gmail.com>",
   "description": "The React SEO component that handles metadata so you don't have to. Supports Google, OpenGraph, Twitter, and beyond. 🚀",
   "homepage": "https://devboldly.github.io/react-super-seo/",
