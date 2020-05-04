@@ -3,7 +3,7 @@
   "version": "1.0.4",
   "author": "DevBoldly <devboldly@gmail.com>",
   "description": "The React SEO component that handles metadata so you don't have to. Supports Google, OpenGraph, Twitter, and beyond. 🚀",
-  "homepage": "https://github.com/devboldly/react-super-seo#readme",
+  "homepage": "https://devboldly.github.io/react-super-seo/",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
