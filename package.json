@@ -1,9 +1,9 @@
 {
   "name": "react-super-seo",
   "version": "1.0.5",
-  "author": "DevBoldly <devboldly@gmail.com>",
+  "author": "Justin Mahar <contact@justinmahar.com>",
   "description": "The React SEO component that handles metadata so you don't have to. Supports Google, OpenGraph, Twitter, and beyond. 🚀",
-  "homepage": "https://devboldly.github.io/react-super-seo/",
+  "homepage": "https://justinmahar.github.io/react-super-seo/",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -28,10 +28,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devboldly/react-super-seo.git"
+    "url": "git+https://github.com/justinmahar/react-super-seo.git"
   },
   "bugs": {
-    "url": "https://github.com/devboldly/react-super-seo/issues"
+    "url": "https://github.com/justinmahar/react-super-seo/issues"
   },
   "keywords": [],
   "dependencies": {

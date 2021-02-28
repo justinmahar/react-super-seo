@@ -7,13 +7,13 @@ export interface SuperSEOProps {
     /** Specify the site language as an [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes), such as `en` for English. */
     lang?: string;
     /**
-     * Provide an [OpenGraphMetadata](https://devboldly.github.io/react-super-seo/SuperSEO#opengraph-prop-opengraphmetadata) object.
+     * Provide an [OpenGraphMetadata](https://justinmahar.github.io/react-super-seo/SuperSEO#opengraph-prop-opengraphmetadata) object.
      *
      * [OpenGraph](https://ogp.me/) (Facebook) metadata. Will fall back to use title, description, and general "website" type if each respective OpenGraph value is not specified.
      */
     openGraph?: OpenGraphMetadata;
     /**
-     * Provide a [TwitterMetadata](https://devboldly.github.io/react-super-seo/SuperSEO#twitter-prop-twittermetadata) object.
+     * Provide a [TwitterMetadata](https://justinmahar.github.io/react-super-seo/SuperSEO#twitter-prop-twittermetadata) object.
      *
      * Twitter metadata. Uses the [Cards markup](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/markup.html) to enhance tweets. Twitter will check for the meta properties you specify here and render a nice-looking card for you.
      *
@@ -29,7 +29,7 @@ export interface SuperSEOProps {
      */
     twitter?: TwitterMetadata;
     /**
-     * Provide a [GoogleMetadata](https://devboldly.github.io/react-super-seo/SuperSEO#google-prop-googlemetadata) object.
+     * Provide a [GoogleMetadata](https://justinmahar.github.io/react-super-seo/SuperSEO#google-prop-googlemetadata) object.
      *
      * Google-specific metadata. These meta tags all use meta name `google`.
      *
@@ -137,13 +137,13 @@ export interface SuperSEOProps {
     children?: React.ReactNode;
 }
 /**
- * See documentation: [SuperSEO](https://devboldly.github.io/react-super-seo/SuperSEO)
+ * See documentation: [SuperSEO](https://justinmahar.github.io/react-super-seo/SuperSEO)
  *
  * An SEO component that adds a `title`, `description`, [OpenGraph](https://ogp.me/), and [Twitter Cards](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards) meta properties to the `head`.
  *
  * Also supports adding an [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) `lang` attribute to the `html` element.
  *
- * Uses sensible fallbacks where possible and features automatic [MIME type inference](https://devboldly.github.io/react-super-seo/list-of-mime-types) for media URLs.
+ * Uses sensible fallbacks where possible and features automatic [MIME type inference](https://justinmahar.github.io/react-super-seo/list-of-mime-types) for media URLs.
  */
 export declare function SuperSEO(props: SuperSEOProps): JSX.Element;
 export declare type MetaName = {

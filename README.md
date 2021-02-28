@@ -1,5 +1,5 @@
 <h2 align="center">
-  <a href="https://github.com/devboldly/react-super-seo">React Super SEO</a>
+  <a href="https://github.com/justinmahar/react-super-seo">React Super SEO</a>
 </h2>
 <h3 align="center">
   React SEO component that handles metadata so you don't have to.<br/>Supports Google, OpenGraph, Twitter, and beyond. 🚀
@@ -8,21 +8,21 @@
   <a href="https://badge.fury.io/js/react-super-seo">
     <img src="https://badge.fury.io/js/react-super-seo.svg" alt="npm Version"/>
   </a>
-  <a href="https://github.com/devboldly/react-super-seo/actions?query=workflow%3ATests">
-    <img src="https://github.com/devboldly/react-super-seo/workflows/Tests/badge.svg" alt="Tests Status"/>
+  <a href="https://github.com/justinmahar/react-super-seo/actions?query=workflow%3ATests">
+    <img src="https://github.com/justinmahar/react-super-seo/workflows/Tests/badge.svg" alt="Tests Status"/>
   </a>
-  <a href="https://github.com/devboldly/react-super-seo/actions?query=workflow%3ADeploy">
-    <img src="https://github.com/devboldly/react-super-seo/workflows/Deploy/badge.svg" alt="Deploy Status"/>
+  <a href="https://github.com/justinmahar/react-super-seo/actions?query=workflow%3ADeploy">
+    <img src="https://github.com/justinmahar/react-super-seo/workflows/Deploy/badge.svg" alt="Deploy Status"/>
   </a>
 </p>
 
 ## Documentation
 
-Read the **[official documentation](https://devboldly.github.io/react-super-seo/)**.
+Read the **[official documentation](https://justinmahar.github.io/react-super-seo/)**.
 
-[![Demo](./src/__docz__/images/demo.gif "Demo")](https://devboldly.github.io/react-super-seo/SuperSEO#usage)
+[![Demo](./src/__docz__/images/demo.gif "Demo")](https://justinmahar.github.io/react-super-seo/SuperSEO#usage)
 
-👁️ **[Live Demo](https://devboldly.github.io/react-super-seo/SuperSEO#usage)**
+👁️ **[Live Demo](https://justinmahar.github.io/react-super-seo/SuperSEO#usage)**
 
 ## Overview
 
@@ -34,13 +34,13 @@ There are no less than a hundred different React SEO components floating around 
 
 The goal of this project was to create the end all, be all, super SEO component for React.
 
-This component supports OpenGraph and Twitter Cards fully, and includes TypeScript type definitions and fully documented code (including image size recommendations from the official specs) for an enjoyable coding experience. It also falls back where possible and infers MIME types automatically. 
+This component supports OpenGraph and Twitter Cards fully, and includes TypeScript type definitions and fully documented code (including image size recommendations from the official specs) for an enjoyable coding experience. It also falls back where possible and infers MIME types automatically.
 
 Is it super? You decide!
 
 ### Features include:
 
-- **🔌 Essential tags** 
+- **🔌 Essential tags**
   - Supports essential SEO tags like `title`, `description`, and more.
 - **💯 Full OpenGraph and Twitter Cards support**
   - Control how your content appears on the most popular social networks.
@@ -66,7 +66,7 @@ npm i react-super-seo
 ## Quick Start
 
 ```jsx
-import { SuperSEO } from 'react-super-seo';
+import { SuperSEO } from "react-super-seo";
 ```
 
 ```jsx
@@ -76,18 +76,18 @@ import { SuperSEO } from 'react-super-seo';
   lang="en"
   openGraph={{
     ogImage: {
-      ogImage: 'http://placekitten.com/1200/630',
-      ogImageAlt: 'Kittens',
+      ogImage: "http://placekitten.com/1200/630",
+      ogImageAlt: "Kittens",
       ogImageWidth: 1200,
       ogImageHeight: 630,
-      ogImageType: 'image/jpeg',
+      ogImageType: "image/jpeg",
     },
   }}
   twitter={{
     twitterSummaryCard: {
-      summaryCardImage: 'http://placekitten.com/1200/630',
-      summaryCardImageAlt: 'Kittens',
-      summaryCardSiteUsername: 'devboldly',
+      summaryCardImage: "http://placekitten.com/1200/630",
+      summaryCardImageAlt: "Kittens",
+      summaryCardSiteUsername: "justinmahar",
     },
   }}
 />
@@ -107,8 +107,7 @@ Wrap custom meta tags with `SuperSEO`. They will be rendered directly inside the
 </SuperSEO>
 ```
 
-
-Refer to the [SuperSEO component](https://devboldly.github.io/react-super-seo/SuperSEO) usage for all available options.
+Refer to the [SuperSEO component](https://justinmahar.github.io/react-super-seo/SuperSEO) usage for all available options.
 
 ## TypeScript
 
@@ -128,14 +127,14 @@ For major changes, open an issue first to discuss what you'd like to change.
 
 See [Kindling](https://tinyurl.com/kindlingscripts) for npm script documentation.
 
-## ⭐ Found It Helpful? [Star It!](https://github.com/devboldly/react-super-seo/stargazers)
+## ⭐ Found It Helpful? [Star It!](https://github.com/justinmahar/react-super-seo/stargazers)
 
-If you found this project helpful, let the community know by giving it a [star](https://github.com/devboldly/react-super-seo/stargazers): [👉⭐](https://github.com/devboldly/react-super-seo/stargazers)
+If you found this project helpful, let the community know by giving it a [star](https://github.com/justinmahar/react-super-seo/stargazers): [👉⭐](https://github.com/justinmahar/react-super-seo/stargazers)
 
 ## MIT License
 
 ```
-Copyright © 2020 DevBoldly https://devboldly.com
+Copyright © 2020 Justin Mahar https://github.com/justinmahar
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
