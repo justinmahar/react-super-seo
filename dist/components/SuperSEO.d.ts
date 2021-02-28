@@ -183,7 +183,7 @@ export declare type OpenGraphMetadata = {
     /** (Optional) `fb:app_id` - The Facebook App ID lets Facebook know the identify of your site, which provides additional benefits like social analytics, comments moderation and authentication capabilities to your site. */
     fbAppId?: string;
 };
-export declare type OpenGraphOptionalMetadata = {};
+export declare type OpenGraphOptionalMetadata = Record<string, never>;
 export declare type OpenGraphImage = {
     /** `og:image` - An image URL which should represent your object within the graph. */
     ogImage?: string;
@@ -252,7 +252,7 @@ export declare type OpenGraphTypeProfile = {
     /** `profile:gender` - enum(male, female) - Their gender. */
     profileGender?: string;
 };
-export declare type OpenGraphTypeWebsite = {};
+export declare type OpenGraphTypeWebsite = Record<string, never>;
 export declare type MetaPropertiesFunction = () => MetaProperty[];
 export declare type TwitterMetadata = {
     /** `twitter:card` value `summary` - [Summary Card](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary) - Gives the reader a preview of the content before clicking through to your website. */
