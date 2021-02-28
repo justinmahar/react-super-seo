@@ -37,39 +37,38 @@ import { SuperSEO } from "react-super-seo";
 
 Provide as little as a `title` and `description`, and go from there.
 
-<div>
-  <Playground>
-    <div>
-      The SuperSEO component is being used on this page. Try changing the title
-      below.
-    </div>
-    <SuperSEO
-      title="SEO | React Super SEO"
-      description="React SEO component with OpenGraph and Twitter Cards support."
-      lang="en"
-      openGraph={{
-        ogImage: {
-          ogImage: "http://placekitten.com/1200/630",
-          ogImageAlt: "Kittens",
-          ogImageWidth: 1200,
-          ogImageHeight: 630,
-          ogImageType: "image/jpeg",
-        },
-      }}
-      twitter={{
-        twitterSummaryCard: {
-          summaryCardImage: "http://placekitten.com/1200/630",
-          summaryCardImageAlt: "Kittens",
-          summaryCardSiteUsername: "justinmahar",
-        },
-      }}
-    />
-  </Playground>
-  <small>
-    Note: You can edit the source above. Your changes will be rendered
-    immediately.
-  </small>
-</div>
+<Playground>
+  <div>
+    The SuperSEO component is being used on this page. Try changing the title
+    below.
+  </div>
+  <SuperSEO
+    title="SEO | React Super SEO"
+    description="React SEO component with OpenGraph and Twitter Cards support."
+    lang="en"
+    openGraph={{
+      ogImage: {
+        ogImage: "http://placekitten.com/1200/630",
+        ogImageAlt: "Kittens",
+        ogImageWidth: 1200,
+        ogImageHeight: 630,
+        ogImageType: "image/jpeg",
+      },
+    }}
+    twitter={{
+      twitterSummaryCard: {
+        summaryCardImage: "http://placekitten.com/1200/630",
+        summaryCardImageAlt: "Kittens",
+        summaryCardSiteUsername: "justinmahar",
+      },
+    }}
+  />
+</Playground>
+
+<small>
+  Note: You can edit the source above. Your changes will be rendered
+  immediately.
+</small>
 
 ## Props
 
