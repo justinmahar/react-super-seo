@@ -1,5 +1,5 @@
-import * as React from "react";
-import { Helmet } from "react-helmet";
+import * as React from 'react';
+import { Helmet } from 'react-helmet';
 
 export interface SuperSEOProps {
   // === Standard Meta ===
@@ -165,48 +165,46 @@ export function SuperSEO(props: SuperSEOProps): JSX.Element {
   const meta: Meta[] = [];
   if (description) {
     meta.push({
-      name: "description",
+      name: 'description',
       content: description,
     });
   }
-  meta.push(
-    ...createOpenGraphMetadataObjects(props.openGraph, title, description)
-  );
+  meta.push(...createOpenGraphMetadataObjects(props.openGraph, title, description));
   meta.push(...createTwitterMetadataObjects(props.twitter, title, description));
   meta.push(...createGoogleMetadataObjects(props.google));
 
   // Additional meta properties
   if (props.robots) {
     meta.push({
-      name: "robots",
+      name: 'robots',
       content: props.robots,
     });
   }
 
   if (props.googlebot) {
     meta.push({
-      name: "googlebot",
+      name: 'googlebot',
       content: props.googlebot,
     });
   }
 
   if (props.googleSiteVerification) {
     meta.push({
-      name: "google-site-verification",
+      name: 'google-site-verification',
       content: props.googleSiteVerification,
     });
   }
 
   if (props.viewport) {
     meta.push({
-      name: "viewport",
+      name: 'viewport',
       content: props.viewport,
     });
   }
 
   if (props.rating) {
     meta.push({
-      name: "rating",
+      name: 'rating',
       content: props.rating,
     });
   }
@@ -214,17 +212,13 @@ export function SuperSEO(props: SuperSEOProps): JSX.Element {
   return (
     <>
       <Helmet>
-        {props.contentType && (
-          <meta httpEquiv="content-type" content={props.contentType} />
-        )}
+        {props.contentType && <meta httpEquiv="content-type" content={props.contentType} />}
         {props.charset && <meta charSet={props.charset} />}
       </Helmet>
       <Helmet htmlAttributes={htmlAttributes} meta={meta}>
         {titleElement}
       </Helmet>
-      {typeof props.children !== "undefined" && (
-        <Helmet>{props.children}</Helmet>
-      )}
+      {typeof props.children !== 'undefined' && <Helmet>{props.children}</Helmet>}
     </>
   );
 }
@@ -266,7 +260,7 @@ export type OpenGraphMetadata = {
   /** (Optional) `og:description` - A one to two sentence description of your object. */
   ogDescription?: string;
   /** (Optional) `og:determiner` - The word that appears before this object's title in a sentence. An enum of (a, an, the, "", auto). If auto is chosen, the consumer of your data should chose between "a" or "an". Default is "" (blank). */
-  ogDeterminer?: "a" | "an" | "the" | "" | "auto";
+  ogDeterminer?: 'a' | 'an' | 'the' | '' | 'auto';
   /** (Optional) `og:locale` - The locale these tags are marked up in. Of the format language_TERRITORY. Default is en_US. */
   ogLocale?: string;
   /** (Optional) `og:locale:alternate` - An array of other locales this page is available in. */
@@ -281,7 +275,7 @@ export type OpenGraphMetadata = {
 function createOpenGraphMetadataObjects(
   data?: OpenGraphMetadata,
   fallbackTitle?: string,
-  fallbackDescription?: string
+  fallbackDescription?: string,
 ): MetaProperty[] {
   data = data ? data : {};
   const meta: MetaProperty[] = [];
@@ -289,53 +283,41 @@ function createOpenGraphMetadataObjects(
   // og:title
   if (data.ogTitle) {
     meta.push({
-      property: "og:title",
+      property: 'og:title',
       content: data.ogTitle,
     });
   } else if (fallbackTitle) {
     meta.push({
-      property: "og:title",
+      property: 'og:title',
       content: fallbackTitle,
     });
   }
 
   // og:type
   meta.push({
-    property: "og:type",
-    content: data.ogType ? data.ogType : "website",
+    property: 'og:type',
+    content: data.ogType ? data.ogType : 'website',
   });
 
   if (data.ogType) {
     switch (data.ogType) {
-      case "article":
-        meta.push(
-          ...createOpenGraphTypeArticleMetadataObjects(
-            data.ogTypeObject as OpenGraphTypeArticle
-          )
-        );
+      case 'article':
+        meta.push(...createOpenGraphTypeArticleMetadataObjects(data.ogTypeObject as OpenGraphTypeArticle));
         break;
-      case "book":
-        meta.push(
-          ...createOpenGraphTypeBookMetadataObjects(
-            data.ogTypeObject as OpenGraphTypeBook
-          )
-        );
+      case 'book':
+        meta.push(...createOpenGraphTypeBookMetadataObjects(data.ogTypeObject as OpenGraphTypeBook));
         break;
-      case "profile":
-        meta.push(
-          ...createOpenGraphTypeProfileMetadataObjects(
-            data.ogTypeObject as OpenGraphTypeProfile
-          )
-        );
+      case 'profile':
+        meta.push(...createOpenGraphTypeProfileMetadataObjects(data.ogTypeObject as OpenGraphTypeProfile));
         break;
-      case "website":
+      case 'website':
         // No additional properties needed for website.
         break;
       default:
         // Otherwise, assume they provided MetaPropertiesFunction themselves.
         if (data.ogTypeObject) {
           const metaPropsFunction = data.ogTypeObject as MetaPropertiesFunction;
-          if (typeof metaPropsFunction === "function") {
+          if (typeof metaPropsFunction === 'function') {
             meta.push(...metaPropsFunction());
           }
         }
@@ -345,9 +327,7 @@ function createOpenGraphMetadataObjects(
 
   // og:image
   if (data.ogImage) {
-    const images: OpenGraphImage[] = Array.isArray(data.ogImage)
-      ? data.ogImage
-      : [data.ogImage];
+    const images: OpenGraphImage[] = Array.isArray(data.ogImage) ? data.ogImage : [data.ogImage];
     images.forEach((image: OpenGraphImage) => {
       meta.push(...createOpenGraphImageMetadataObjects(image));
     });
@@ -356,16 +336,14 @@ function createOpenGraphMetadataObjects(
   // og:url
   if (data.ogUrl) {
     meta.push({
-      property: "og:url",
+      property: 'og:url',
       content: data.ogUrl,
     });
   } // END og:url
 
   // og:audio
   if (data.ogAudio) {
-    const audios: OpenGraphAudio[] = Array.isArray(data.ogAudio)
-      ? data.ogAudio
-      : [data.ogAudio];
+    const audios: OpenGraphAudio[] = Array.isArray(data.ogAudio) ? data.ogAudio : [data.ogAudio];
     audios.forEach((audio: OpenGraphAudio) => {
       meta.push(...createOpenGraphAudioMetadataObjects(audio));
     });
@@ -374,12 +352,12 @@ function createOpenGraphMetadataObjects(
   // og:description
   if (data.ogDescription) {
     meta.push({
-      property: "og:description",
+      property: 'og:description',
       content: data.ogDescription,
     });
   } else if (fallbackDescription) {
     meta.push({
-      property: "og:description",
+      property: 'og:description',
       content: fallbackDescription,
     });
   } // END og:description
@@ -387,7 +365,7 @@ function createOpenGraphMetadataObjects(
   // og:determiner
   if (data.ogDeterminer) {
     meta.push({
-      property: "og:determiner",
+      property: 'og:determiner',
       content: data.ogDeterminer,
     });
   } // END og:determiner
@@ -395,7 +373,7 @@ function createOpenGraphMetadataObjects(
   // og:locale
   if (data.ogLocale) {
     meta.push({
-      property: "og:locale",
+      property: 'og:locale',
       content: data.ogLocale,
     });
   } // END og:locale
@@ -404,7 +382,7 @@ function createOpenGraphMetadataObjects(
   if (data.ogLocaleAlternate) {
     data.ogLocaleAlternate.forEach((localeAlternate: string) => {
       meta.push({
-        property: "og:locale:alternate",
+        property: 'og:locale:alternate',
         content: localeAlternate,
       });
     });
@@ -413,16 +391,14 @@ function createOpenGraphMetadataObjects(
   // og:site_name
   if (data.ogSiteName) {
     meta.push({
-      property: "og:site_name",
+      property: 'og:site_name',
       content: data.ogSiteName,
     });
   } // END og:site_name
 
   // og:video
   if (data.ogVideo) {
-    const videos: OpenGraphVideo[] = Array.isArray(data.ogVideo)
-      ? data.ogVideo
-      : [data.ogVideo];
+    const videos: OpenGraphVideo[] = Array.isArray(data.ogVideo) ? data.ogVideo : [data.ogVideo];
     videos.forEach((video: OpenGraphVideo) => {
       meta.push(...createOpenGraphVideoMetadataObjects(video));
     });
@@ -431,7 +407,7 @@ function createOpenGraphMetadataObjects(
   // fb:app_id
   if (data.fbAppId) {
     meta.push({
-      property: "fb:app_id",
+      property: 'fb:app_id',
       content: data.fbAppId,
     });
   }
@@ -440,7 +416,7 @@ function createOpenGraphMetadataObjects(
   return meta;
 }
 
-export type OpenGraphOptionalMetadata = {};
+export type OpenGraphOptionalMetadata = Record<string, never>;
 
 export type OpenGraphImage = {
   /** `og:image` - An image URL which should represent your object within the graph. */
@@ -456,9 +432,7 @@ export type OpenGraphImage = {
   /** `og:image:alt` - A description of what is in the image (not a caption). If the page specifies an og:image it should specify og:image:alt. */
   ogImageAlt?: string;
 };
-function createOpenGraphImageMetadataObjects(
-  image: OpenGraphImage
-): MetaProperty[] {
+function createOpenGraphImageMetadataObjects(image: OpenGraphImage): MetaProperty[] {
   if (!image) {
     return [];
   }
@@ -466,97 +440,97 @@ function createOpenGraphImageMetadataObjects(
   if (image.ogImage) {
     // og:image
     meta.push({
-      property: "og:image",
+      property: 'og:image',
       content: image.ogImage,
     });
     // og:image:url
     meta.push({
-      property: "og:image:url",
+      property: 'og:image:url',
       content: image.ogImage,
     });
     // og:image:secure_url
     if (image.ogImageSecureUrl) {
       meta.push({
-        property: "og:image:secure_url",
+        property: 'og:image:secure_url',
         content: image.ogImageSecureUrl,
       });
-    } else if (image.ogImage.startsWith("https")) {
+    } else if (image.ogImage.startsWith('https')) {
       // If the link is already secure, supply it.
       meta.push({
-        property: "og:image:secure_url",
+        property: 'og:image:secure_url',
         content: image.ogImage,
       });
     }
     // og:image:type
     if (image.ogImageType) {
       meta.push({
-        property: "og:image:type",
+        property: 'og:image:type',
         content: image.ogImageType,
       });
     } else {
       // If not specified, infer the MIME type for common image formats
       const mimeTypes: { [x: string]: string } = {
-        ".art": "image/x-jg",
-        ".bm": "image/bmp",
-        ".bmp": "image/bmp",
-        ".dwg": "image/vnd.dwg",
-        ".dxf": "image/vnd.dwg",
-        ".fif": "image/fif",
-        ".flo": "image/florian",
-        ".fpx": "image/vnd.fpx",
-        ".g3": "image/g3fax",
-        ".gif": "image/gif",
-        ".ico": "image/x-icon",
-        ".ief": "image/ief",
-        ".iefs": "image/ief",
-        ".jfif": "image/jpeg",
-        ".jfif-tbnl": "image/jpeg",
-        ".jpe": "image/jpeg",
-        ".jpeg": "image/jpeg",
-        ".jpg": "image/jpeg",
-        ".jps": "image/x-jps",
-        ".jut": "image/jutvision",
-        ".mcf": "image/vasa",
-        ".nap": "image/naplps",
-        ".naplps": "image/naplps",
-        ".nif": "image/x-niff",
-        ".niff": "image/x-niff",
-        ".pbm": "image/x-portable-bitmap",
-        ".pct": "image/x-pict",
-        ".pcx": "image/x-pcx",
-        ".pgm": "image/x-portable-graymap",
-        ".pic": "image/pict",
-        ".pict": "image/pict",
-        ".pm": "image/x-xpixmap",
-        ".png": "image/png",
-        ".pnm": "image/x-portable-anymap",
-        ".ppm": "image/x-portable-pixmap",
-        ".qif": "image/x-quicktime",
-        ".qti": "image/x-quicktime",
-        ".qtif": "image/x-quicktime",
-        ".ras": "image/cmu-raster",
-        ".rast": "image/cmu-raster",
-        ".rf": "image/vnd.rn-realflash",
-        ".rgb": "image/x-rgb",
-        ".rp": "image/vnd.rn-realpix",
-        ".svf": "image/vnd.dwg",
-        ".tif": "image/tiff",
-        ".tiff": "image/tiff",
-        ".turbot": "image/florian",
-        ".wbmp": "image/vnd.wap.wbmp",
-        ".webp": "image/webp",
-        ".x-png": "image/png",
-        ".xbm": "image/xbm",
-        ".xif": "image/vnd.xiff",
-        ".xpm": "image/xpm",
-        ".xwd": "image/x-xwd",
+        '.art': 'image/x-jg',
+        '.bm': 'image/bmp',
+        '.bmp': 'image/bmp',
+        '.dwg': 'image/vnd.dwg',
+        '.dxf': 'image/vnd.dwg',
+        '.fif': 'image/fif',
+        '.flo': 'image/florian',
+        '.fpx': 'image/vnd.fpx',
+        '.g3': 'image/g3fax',
+        '.gif': 'image/gif',
+        '.ico': 'image/x-icon',
+        '.ief': 'image/ief',
+        '.iefs': 'image/ief',
+        '.jfif': 'image/jpeg',
+        '.jfif-tbnl': 'image/jpeg',
+        '.jpe': 'image/jpeg',
+        '.jpeg': 'image/jpeg',
+        '.jpg': 'image/jpeg',
+        '.jps': 'image/x-jps',
+        '.jut': 'image/jutvision',
+        '.mcf': 'image/vasa',
+        '.nap': 'image/naplps',
+        '.naplps': 'image/naplps',
+        '.nif': 'image/x-niff',
+        '.niff': 'image/x-niff',
+        '.pbm': 'image/x-portable-bitmap',
+        '.pct': 'image/x-pict',
+        '.pcx': 'image/x-pcx',
+        '.pgm': 'image/x-portable-graymap',
+        '.pic': 'image/pict',
+        '.pict': 'image/pict',
+        '.pm': 'image/x-xpixmap',
+        '.png': 'image/png',
+        '.pnm': 'image/x-portable-anymap',
+        '.ppm': 'image/x-portable-pixmap',
+        '.qif': 'image/x-quicktime',
+        '.qti': 'image/x-quicktime',
+        '.qtif': 'image/x-quicktime',
+        '.ras': 'image/cmu-raster',
+        '.rast': 'image/cmu-raster',
+        '.rf': 'image/vnd.rn-realflash',
+        '.rgb': 'image/x-rgb',
+        '.rp': 'image/vnd.rn-realpix',
+        '.svf': 'image/vnd.dwg',
+        '.tif': 'image/tiff',
+        '.tiff': 'image/tiff',
+        '.turbot': 'image/florian',
+        '.wbmp': 'image/vnd.wap.wbmp',
+        '.webp': 'image/webp',
+        '.x-png': 'image/png',
+        '.xbm': 'image/xbm',
+        '.xif': 'image/vnd.xiff',
+        '.xpm': 'image/xpm',
+        '.xwd': 'image/x-xwd',
       };
       const mimeTypeKeys: string[] = Object.keys(mimeTypes);
       for (let i = 0; i < mimeTypeKeys.length; i++) {
         const extension: string = mimeTypeKeys[i];
         if (image && image.ogImage && image.ogImage.endsWith(extension)) {
           meta.push({
-            property: "og:image:type",
+            property: 'og:image:type',
             content: mimeTypes[extension],
           });
           break;
@@ -566,21 +540,21 @@ function createOpenGraphImageMetadataObjects(
     // og:image:width
     if (image.ogImageWidth) {
       meta.push({
-        property: "og:image:width",
-        content: image.ogImageWidth + "",
+        property: 'og:image:width',
+        content: image.ogImageWidth + '',
       });
     }
     // og:image:height
     if (image.ogImageHeight) {
       meta.push({
-        property: "og:image:height",
-        content: image.ogImageHeight + "",
+        property: 'og:image:height',
+        content: image.ogImageHeight + '',
       });
     }
     // og:image:alt
     if (image.ogImageAlt) {
       meta.push({
-        property: "og:image:alt",
+        property: 'og:image:alt',
         content: image.ogImageAlt,
       });
     }
@@ -600,9 +574,7 @@ export type OpenGraphVideo = {
   /** `og:video:height` - The number of pixels high. */
   ogVideoHeight?: number | string;
 };
-function createOpenGraphVideoMetadataObjects(
-  video: OpenGraphVideo
-): MetaProperty[] {
+function createOpenGraphVideoMetadataObjects(video: OpenGraphVideo): MetaProperty[] {
   if (!video) {
     return [];
   }
@@ -610,91 +582,91 @@ function createOpenGraphVideoMetadataObjects(
   if (video.ogVideo) {
     // og:video
     meta.push({
-      property: "og:video",
+      property: 'og:video',
       content: video.ogVideo,
     });
     // og:video:url
     meta.push({
-      property: "og:video:url",
+      property: 'og:video:url',
       content: video.ogVideo,
     });
     // og:video:secure_url
     if (video.ogVideoSecureUrl) {
       meta.push({
-        property: "og:video:secure_url",
+        property: 'og:video:secure_url',
         content: video.ogVideoSecureUrl,
       });
-    } else if (video.ogVideo.startsWith("https")) {
+    } else if (video.ogVideo.startsWith('https')) {
       // If the link is already secure, supply it.
       meta.push({
-        property: "og:video:secure_url",
+        property: 'og:video:secure_url',
         content: video.ogVideo,
       });
     }
     // og:video:type
     if (video.ogVideoType) {
       meta.push({
-        property: "og:video:type",
+        property: 'og:video:type',
         content: video.ogVideoType,
       });
     } else {
       // If not specified, infer the MIME type for common video formats
       const mimeTypes: { [x: string]: string } = {
-        ".ts": "video/MP2T",
-        ".webm": "video/webm",
-        ".3gp": "video/3gpp",
-        ".afl": "video/animaflex",
-        ".asf": "video/x-ms-asf",
-        ".asx": "video/x-ms-asf",
-        ".avi": "video/avi",
-        ".avs": "video/avs-video",
-        ".dif": "video/x-dv",
-        ".dl": "video/dl",
-        ".dv": "video/x-dv",
-        ".fli": "video/fli",
-        ".flv": "video/x-flv",
-        ".fmf": "video/x-atomic3d-feature",
-        ".gl": "video/gl",
-        ".isu": "video/x-isvideo",
-        ".m1v": "video/mpeg",
-        ".m2v": "video/mpeg",
-        ".m3u8": "application/x-mpegURL",
-        ".m4a": "video/mp4",
-        ".m4b": "video/mp4",
-        ".m4p": "video/mp4",
-        ".m4r": "video/mp4",
-        ".m4v": "video/mp4",
-        ".mjpg": "video/x-motion-jpeg",
-        ".moov": "video/quicktime",
-        ".mov": "video/quicktime",
-        ".movie": "video/x-sgi-movie",
-        ".mp2": "video/mpeg",
-        ".mp3": "video/mpeg",
-        ".mp4": "video/mp4",
-        ".mpa": "video/mpeg",
-        ".mpe": "video/mpeg",
-        ".mpeg": "video/mpeg",
-        ".mpg": "video/mpeg",
-        ".mv": "video/x-sgi-movie",
-        ".ogg": "video/ogg",
-        ".qt": "video/quicktime",
-        ".qtc": "video/x-qtc",
-        ".rv": "video/vnd.rn-realvideo",
-        ".scm": "video/x-scm",
-        ".vdo": "video/vdo",
-        ".viv": "video/vivo",
-        ".vivo": "video/vivo",
-        ".vos": "video/vosaic",
-        ".wmv": "video/x-ms-wmv",
-        ".xdr": "video/x-amt-demorun",
-        ".xsr": "video/x-amt-showrun",
+        '.ts': 'video/MP2T',
+        '.webm': 'video/webm',
+        '.3gp': 'video/3gpp',
+        '.afl': 'video/animaflex',
+        '.asf': 'video/x-ms-asf',
+        '.asx': 'video/x-ms-asf',
+        '.avi': 'video/avi',
+        '.avs': 'video/avs-video',
+        '.dif': 'video/x-dv',
+        '.dl': 'video/dl',
+        '.dv': 'video/x-dv',
+        '.fli': 'video/fli',
+        '.flv': 'video/x-flv',
+        '.fmf': 'video/x-atomic3d-feature',
+        '.gl': 'video/gl',
+        '.isu': 'video/x-isvideo',
+        '.m1v': 'video/mpeg',
+        '.m2v': 'video/mpeg',
+        '.m3u8': 'application/x-mpegURL',
+        '.m4a': 'video/mp4',
+        '.m4b': 'video/mp4',
+        '.m4p': 'video/mp4',
+        '.m4r': 'video/mp4',
+        '.m4v': 'video/mp4',
+        '.mjpg': 'video/x-motion-jpeg',
+        '.moov': 'video/quicktime',
+        '.mov': 'video/quicktime',
+        '.movie': 'video/x-sgi-movie',
+        '.mp2': 'video/mpeg',
+        '.mp3': 'video/mpeg',
+        '.mp4': 'video/mp4',
+        '.mpa': 'video/mpeg',
+        '.mpe': 'video/mpeg',
+        '.mpeg': 'video/mpeg',
+        '.mpg': 'video/mpeg',
+        '.mv': 'video/x-sgi-movie',
+        '.ogg': 'video/ogg',
+        '.qt': 'video/quicktime',
+        '.qtc': 'video/x-qtc',
+        '.rv': 'video/vnd.rn-realvideo',
+        '.scm': 'video/x-scm',
+        '.vdo': 'video/vdo',
+        '.viv': 'video/vivo',
+        '.vivo': 'video/vivo',
+        '.vos': 'video/vosaic',
+        '.wmv': 'video/x-ms-wmv',
+        '.xdr': 'video/x-amt-demorun',
+        '.xsr': 'video/x-amt-showrun',
       };
       const mimeTypeKeys: string[] = Object.keys(mimeTypes);
       for (let i = 0; i < mimeTypeKeys.length; i++) {
         const extension: string = mimeTypeKeys[i];
         if (video && video.ogVideo && video.ogVideo.endsWith(extension)) {
           meta.push({
-            property: "og:video:type",
+            property: 'og:video:type',
             content: mimeTypes[extension],
           });
           break;
@@ -704,15 +676,15 @@ function createOpenGraphVideoMetadataObjects(
     // og:video:width
     if (video.ogVideoWidth) {
       meta.push({
-        property: "og:video:width",
-        content: video.ogVideoWidth + "",
+        property: 'og:video:width',
+        content: video.ogVideoWidth + '',
       });
     }
     // og:video:height
     if (video.ogVideoHeight) {
       meta.push({
-        property: "og:video:height",
-        content: video.ogVideoHeight + "",
+        property: 'og:video:height',
+        content: video.ogVideoHeight + '',
       });
     }
   }
@@ -727,9 +699,7 @@ export type OpenGraphAudio = {
   /** `og:audio:type` - A MIME type for this audio, such as `audio/mpeg3` for MP3. If not provided, the MIME type will be inferred from the extension (e.g. `.mp3`) at the end of the URL. */
   ogAudioType?: string;
 };
-function createOpenGraphAudioMetadataObjects(
-  audio: OpenGraphAudio
-): MetaProperty[] {
+function createOpenGraphAudioMetadataObjects(audio: OpenGraphAudio): MetaProperty[] {
   if (!audio) {
     return [];
   }
@@ -737,93 +707,93 @@ function createOpenGraphAudioMetadataObjects(
   if (audio.ogAudio) {
     // og:audio
     meta.push({
-      property: "og:audio",
+      property: 'og:audio',
       content: audio.ogAudio,
     });
     // og:audio:url
     meta.push({
-      property: "og:audio:url",
+      property: 'og:audio:url',
       content: audio.ogAudio,
     });
     // og:audio:secure_url
     if (audio.ogAudioSecureUrl) {
       meta.push({
-        property: "og:audio:secure_url",
+        property: 'og:audio:secure_url',
         content: audio.ogAudioSecureUrl,
       });
-    } else if (audio.ogAudio.startsWith("https")) {
+    } else if (audio.ogAudio.startsWith('https')) {
       // If the link is already secure, supply it.
       meta.push({
-        property: "og:audio:secure_url",
+        property: 'og:audio:secure_url',
         content: audio.ogAudio,
       });
     }
     // og:audio:type
     if (audio.ogAudioType) {
       meta.push({
-        property: "og:audio:type",
+        property: 'og:audio:type',
         content: audio.ogAudioType,
       });
     } else {
       // If not specified, infer the MIME type for common audio formats
       const mimeTypes: { [x: string]: string } = {
-        ".aac": "audio/aac",
-        ".aif": "audio/aiff",
-        ".aifc": "audio/aiff",
-        ".aiff": "audio/aiff",
-        ".au": "audio/basic",
-        ".funk": "audio/make",
-        ".gsd": "audio/x-gsm",
-        ".gsm": "audio/x-gsm",
-        ".it": "audio/it",
-        ".jam": "audio/x-jam",
-        ".kar": "audio/midi",
-        ".la": "audio/nspaudio",
-        ".lam": "audio/x-liveaudio",
-        ".lma": "audio/nspaudio",
-        ".m2a": "audio/mpeg",
-        ".m3u": "audio/x-mpequrl",
-        ".mid": "audio/midi",
-        ".midi": "audio/midi",
-        ".mjf": "audio/x-vnd.audioexplosion.mjuicemediafile",
-        ".mod": "audio/mod",
-        ".mp2": "audio/mpeg",
-        ".mp3": "audio/mpeg3",
-        ".mp4": "audio/mp4",
-        ".mpa": "audio/mpeg",
-        ".mpg": "audio/mpeg",
-        ".mpga": "audio/mpeg",
-        ".my": "audio/make",
-        ".oga": "audio/ogg",
-        ".pfunk": "audio/make",
-        ".qcp": "audio/vnd.qcelp",
-        ".ra": "audio/x-pn-realaudio",
-        ".ram": "audio/x-pn-realaudio",
-        ".rm": "audio/x-pn-realaudio",
-        ".rmi": "audio/mid",
-        ".rmm": "audio/x-pn-realaudio",
-        ".rmp": "audio/x-pn-realaudio",
-        ".rpm": "audio/x-pn-realaudio-plugin",
-        ".s3m": "audio/s3m",
-        ".sid": "audio/x-psid",
-        ".snd": "audio/basic",
-        ".tsi": "audio/tsp-audio",
-        ".tsp": "audio/tsplayer",
-        ".voc": "audio/voc",
-        ".vox": "audio/voxware",
-        ".vqe": "audio/x-twinvq-plugin",
-        ".vqf": "audio/x-twinvq",
-        ".vql": "audio/x-twinvq-plugin",
-        ".wav": "audio/wav",
-        ".weba": "audio/webm",
-        ".xm": "audio/xm",
+        '.aac': 'audio/aac',
+        '.aif': 'audio/aiff',
+        '.aifc': 'audio/aiff',
+        '.aiff': 'audio/aiff',
+        '.au': 'audio/basic',
+        '.funk': 'audio/make',
+        '.gsd': 'audio/x-gsm',
+        '.gsm': 'audio/x-gsm',
+        '.it': 'audio/it',
+        '.jam': 'audio/x-jam',
+        '.kar': 'audio/midi',
+        '.la': 'audio/nspaudio',
+        '.lam': 'audio/x-liveaudio',
+        '.lma': 'audio/nspaudio',
+        '.m2a': 'audio/mpeg',
+        '.m3u': 'audio/x-mpequrl',
+        '.mid': 'audio/midi',
+        '.midi': 'audio/midi',
+        '.mjf': 'audio/x-vnd.audioexplosion.mjuicemediafile',
+        '.mod': 'audio/mod',
+        '.mp2': 'audio/mpeg',
+        '.mp3': 'audio/mpeg3',
+        '.mp4': 'audio/mp4',
+        '.mpa': 'audio/mpeg',
+        '.mpg': 'audio/mpeg',
+        '.mpga': 'audio/mpeg',
+        '.my': 'audio/make',
+        '.oga': 'audio/ogg',
+        '.pfunk': 'audio/make',
+        '.qcp': 'audio/vnd.qcelp',
+        '.ra': 'audio/x-pn-realaudio',
+        '.ram': 'audio/x-pn-realaudio',
+        '.rm': 'audio/x-pn-realaudio',
+        '.rmi': 'audio/mid',
+        '.rmm': 'audio/x-pn-realaudio',
+        '.rmp': 'audio/x-pn-realaudio',
+        '.rpm': 'audio/x-pn-realaudio-plugin',
+        '.s3m': 'audio/s3m',
+        '.sid': 'audio/x-psid',
+        '.snd': 'audio/basic',
+        '.tsi': 'audio/tsp-audio',
+        '.tsp': 'audio/tsplayer',
+        '.voc': 'audio/voc',
+        '.vox': 'audio/voxware',
+        '.vqe': 'audio/x-twinvq-plugin',
+        '.vqf': 'audio/x-twinvq',
+        '.vql': 'audio/x-twinvq-plugin',
+        '.wav': 'audio/wav',
+        '.weba': 'audio/webm',
+        '.xm': 'audio/xm',
       };
       const mimeTypeKeys: string[] = Object.keys(mimeTypes);
       for (let i = 0; i < mimeTypeKeys.length; i++) {
         const extension: string = mimeTypeKeys[i];
         if (audio && audio.ogAudio && audio.ogAudio.endsWith(extension)) {
           meta.push({
-            property: "og:audio:type",
+            property: 'og:audio:type',
             content: mimeTypes[extension],
           });
           break;
@@ -850,9 +820,7 @@ export type OpenGraphTypeArticle = {
   /** `article:tag` - string array - Tag words associated with this article. */
   articleTag?: string[];
 };
-function createOpenGraphTypeArticleMetadataObjects(
-  article: OpenGraphTypeArticle
-): MetaProperty[] {
+function createOpenGraphTypeArticleMetadataObjects(article: OpenGraphTypeArticle): MetaProperty[] {
   if (!article) {
     return [];
   }
@@ -860,21 +828,21 @@ function createOpenGraphTypeArticleMetadataObjects(
   // article:published_time
   if (article.articlePublishedTime) {
     meta.push({
-      property: "article:published_time",
+      property: 'article:published_time',
       content: article.articlePublishedTime,
     });
   }
   // article:modified_time
   if (article.articleModifiedTime) {
     meta.push({
-      property: "article:modified_time",
+      property: 'article:modified_time',
       content: article.articleModifiedTime,
     });
   }
   // article:expiration_time
   if (article.articleExpirationTime) {
     meta.push({
-      property: "article:expiration_time",
+      property: 'article:expiration_time',
       content: article.articleExpirationTime,
     });
   }
@@ -882,7 +850,7 @@ function createOpenGraphTypeArticleMetadataObjects(
   if (article.articleAuthor) {
     article.articleAuthor.forEach((authorUri: string) => {
       meta.push({
-        property: "article:author",
+        property: 'article:author',
         content: authorUri,
       });
     });
@@ -890,7 +858,7 @@ function createOpenGraphTypeArticleMetadataObjects(
   // article:section
   if (article.articleSection) {
     meta.push({
-      property: "article:section",
+      property: 'article:section',
       content: article.articleSection,
     });
   }
@@ -898,7 +866,7 @@ function createOpenGraphTypeArticleMetadataObjects(
   if (article.articleTag) {
     article.articleTag.forEach((tag: string) => {
       meta.push({
-        property: "article:tag",
+        property: 'article:tag',
         content: tag,
       });
     });
@@ -916,9 +884,7 @@ export type OpenGraphTypeBook = {
   /** `book:tag` - string array - Tag words associated with this book. */
   bookTag?: string[];
 };
-function createOpenGraphTypeBookMetadataObjects(
-  book: OpenGraphTypeBook
-): MetaProperty[] {
+function createOpenGraphTypeBookMetadataObjects(book: OpenGraphTypeBook): MetaProperty[] {
   if (!book) {
     return [];
   }
@@ -927,7 +893,7 @@ function createOpenGraphTypeBookMetadataObjects(
   if (book.bookAuthor) {
     book.bookAuthor.forEach((authorUri: string) => {
       meta.push({
-        property: "book:author",
+        property: 'book:author',
         content: authorUri,
       });
     });
@@ -935,14 +901,14 @@ function createOpenGraphTypeBookMetadataObjects(
   // book:isbn
   if (book.bookIsbn) {
     meta.push({
-      property: "book:isbn",
+      property: 'book:isbn',
       content: book.bookIsbn,
     });
   }
   // book:release_date
   if (book.bookReleaseDate) {
     meta.push({
-      property: "book:release_date",
+      property: 'book:release_date',
       content: book.bookReleaseDate,
     });
   }
@@ -950,7 +916,7 @@ function createOpenGraphTypeBookMetadataObjects(
   if (book.bookTag) {
     book.bookTag.forEach((tag: string) => {
       meta.push({
-        property: "book:tag",
+        property: 'book:tag',
         content: tag,
       });
     });
@@ -968,9 +934,7 @@ export type OpenGraphTypeProfile = {
   /** `profile:gender` - enum(male, female) - Their gender. */
   profileGender?: string;
 };
-function createOpenGraphTypeProfileMetadataObjects(
-  profile: OpenGraphTypeProfile
-): MetaProperty[] {
+function createOpenGraphTypeProfileMetadataObjects(profile: OpenGraphTypeProfile): MetaProperty[] {
   if (!profile) {
     return [];
   }
@@ -978,35 +942,35 @@ function createOpenGraphTypeProfileMetadataObjects(
   // profile:first_name
   if (profile.profileFirstName) {
     meta.push({
-      property: "profile:first_name",
+      property: 'profile:first_name',
       content: profile.profileFirstName,
     });
   }
   // profile:last_name
   if (profile.profileLastName) {
     meta.push({
-      property: "profile:last_name",
+      property: 'profile:last_name',
       content: profile.profileLastName,
     });
   }
   // profile:username
   if (profile.profileUsername) {
     meta.push({
-      property: "profile:username",
+      property: 'profile:username',
       content: profile.profileUsername,
     });
   }
   // profile:gender
   if (profile.profileGender) {
     meta.push({
-      property: "profile:gender",
+      property: 'profile:gender',
       content: profile.profileGender,
     });
   }
   return meta;
 }
 
-export type OpenGraphTypeWebsite = {};
+export type OpenGraphTypeWebsite = Record<string, never>;
 
 export type MetaPropertiesFunction = () => MetaProperty[];
 
@@ -1028,7 +992,7 @@ export type TwitterMetadata = {
 function createTwitterMetadataObjects(
   data: TwitterMetadata | undefined,
   fallbackTitle?: string,
-  fallbackDescription?: string
+  fallbackDescription?: string,
 ): MetaProperty[] {
   if (!data) {
     return [];
@@ -1039,8 +1003,8 @@ function createTwitterMetadataObjects(
       ...createTwitterSummaryCardMetadataObjects(
         data.twitterSummaryCard as TwitterSummaryCardType,
         fallbackTitle,
-        fallbackDescription
-      )
+        fallbackDescription,
+      ),
     );
   }
 
@@ -1049,8 +1013,8 @@ function createTwitterMetadataObjects(
       ...createTwitterSummaryCardWithLargeImageMetadataObjects(
         data.twitterSummaryCardWithLargeImage as TwitterSummaryCardWithLargeImageCardType,
         fallbackTitle,
-        fallbackDescription
-      )
+        fallbackDescription,
+      ),
     );
   }
 
@@ -1059,8 +1023,8 @@ function createTwitterMetadataObjects(
       ...createTwitterPlayerCardMetadataObjects(
         data.twitterPlayerCard as TwitterPlayerCardType,
         fallbackTitle,
-        fallbackDescription
-      )
+        fallbackDescription,
+      ),
     );
   }
 
@@ -1069,8 +1033,8 @@ function createTwitterMetadataObjects(
       ...createTwitterAppCardMetadataObjects(
         data.twitterAppCard as TwitterAppCardType,
         fallbackTitle,
-        fallbackDescription
-      )
+        fallbackDescription,
+      ),
     );
   }
 
@@ -1103,7 +1067,7 @@ export type TwitterSummaryCardType = {
 function createTwitterSummaryCardMetadataObjects(
   summaryCard: TwitterSummaryCardType,
   fallbackTitle?: string,
-  fallbackDescription?: string
+  fallbackDescription?: string,
 ): MetaProperty[] {
   if (!summaryCard) {
     return [];
@@ -1111,51 +1075,51 @@ function createTwitterSummaryCardMetadataObjects(
   const meta: MetaProperty[] = [];
   // twitter:card
   meta.push({
-    property: "twitter:card",
-    content: "summary",
+    property: 'twitter:card',
+    content: 'summary',
   });
   // twitter:site
   if (summaryCard.summaryCardSiteUsername) {
     meta.push({
-      property: "twitter:site",
+      property: 'twitter:site',
       content: summaryCard.summaryCardSiteUsername,
     });
   }
   // twitter:title
   if (summaryCard.summaryCardTitle) {
     meta.push({
-      property: "twitter:title",
+      property: 'twitter:title',
       content: summaryCard.summaryCardTitle,
     });
   } else if (fallbackTitle) {
     meta.push({
-      property: "twitter:title",
+      property: 'twitter:title',
       content: fallbackTitle,
     });
   }
   // twitter:description
   if (summaryCard.summaryCardDescription) {
     meta.push({
-      property: "twitter:description",
+      property: 'twitter:description',
       content: summaryCard.summaryCardDescription,
     });
   } else if (fallbackDescription) {
     meta.push({
-      property: "twitter:description",
+      property: 'twitter:description',
       content: fallbackDescription,
     });
   }
   // twitter:image
   if (summaryCard.summaryCardImage) {
     meta.push({
-      property: "twitter:image",
+      property: 'twitter:image',
       content: summaryCard.summaryCardImage,
     });
   }
   // twitter:image:alt
   if (summaryCard.summaryCardImageAlt) {
     meta.push({
-      property: "twitter:image:alt",
+      property: 'twitter:image:alt',
       content: summaryCard.summaryCardImageAlt,
     });
   }
@@ -1188,7 +1152,7 @@ export type TwitterSummaryCardWithLargeImageCardType = {
 function createTwitterSummaryCardWithLargeImageMetadataObjects(
   summaryCard: TwitterSummaryCardWithLargeImageCardType,
   fallbackTitle?: string,
-  fallbackDescription?: string
+  fallbackDescription?: string,
 ): MetaProperty[] {
   if (!summaryCard) {
     return [];
@@ -1196,51 +1160,51 @@ function createTwitterSummaryCardWithLargeImageMetadataObjects(
   const meta: MetaProperty[] = [];
   // twitter:card
   meta.push({
-    property: "twitter:card",
-    content: "summary_large_image",
+    property: 'twitter:card',
+    content: 'summary_large_image',
   });
   // twitter:site
   if (summaryCard.summaryCardSiteUsername) {
     meta.push({
-      property: "twitter:site",
+      property: 'twitter:site',
       content: summaryCard.summaryCardSiteUsername,
     });
   }
   // twitter:title
   if (summaryCard.summaryCardTitle) {
     meta.push({
-      property: "twitter:title",
+      property: 'twitter:title',
       content: summaryCard.summaryCardTitle,
     });
   } else if (fallbackTitle) {
     meta.push({
-      property: "twitter:title",
+      property: 'twitter:title',
       content: fallbackTitle,
     });
   }
   // twitter:description
   if (summaryCard.summaryCardDescription) {
     meta.push({
-      property: "twitter:description",
+      property: 'twitter:description',
       content: summaryCard.summaryCardDescription,
     });
   } else if (fallbackDescription) {
     meta.push({
-      property: "twitter:description",
+      property: 'twitter:description',
       content: fallbackDescription,
     });
   }
   // twitter:image
   if (summaryCard.summaryCardImage) {
     meta.push({
-      property: "twitter:image",
+      property: 'twitter:image',
       content: summaryCard.summaryCardImage,
     });
   }
   // twitter:image:alt
   if (summaryCard.summaryCardImageAlt) {
     meta.push({
-      property: "twitter:image:alt",
+      property: 'twitter:image:alt',
       content: summaryCard.summaryCardImageAlt,
     });
   }
@@ -1275,7 +1239,7 @@ export type TwitterPlayerCardType = {
 function createTwitterPlayerCardMetadataObjects(
   playerCard: TwitterPlayerCardType,
   fallbackTitle?: string,
-  fallbackDescription?: string
+  fallbackDescription?: string,
 ): MetaProperty[] {
   if (!playerCard) {
     return [];
@@ -1283,72 +1247,72 @@ function createTwitterPlayerCardMetadataObjects(
   const meta: MetaProperty[] = [];
   // twitter:card
   meta.push({
-    property: "twitter:card",
-    content: "player",
+    property: 'twitter:card',
+    content: 'player',
   });
   // twitter:title
   if (playerCard.playerCardTitle) {
     meta.push({
-      property: "twitter:title",
+      property: 'twitter:title',
       content: playerCard.playerCardTitle,
     });
   } else if (fallbackTitle) {
     meta.push({
-      property: "twitter:title",
+      property: 'twitter:title',
       content: fallbackTitle,
     });
   }
   // twitter:site
   if (playerCard.playerCardSiteUsername) {
     meta.push({
-      property: "twitter:site",
+      property: 'twitter:site',
       content: playerCard.playerCardSiteUsername,
     });
   }
   // twitter:description
   if (playerCard.playerCardDescription) {
     meta.push({
-      property: "twitter:description",
+      property: 'twitter:description',
       content: playerCard.playerCardDescription,
     });
   } else if (fallbackDescription) {
     meta.push({
-      property: "twitter:description",
+      property: 'twitter:description',
       content: fallbackDescription,
     });
   }
   // twitter:player
   if (playerCard.playerCardPlayer) {
     meta.push({
-      property: "twitter:player",
+      property: 'twitter:player',
       content: playerCard.playerCardPlayer,
     });
   }
   // twitter:player:width
   if (playerCard.playerCardPlayerWidth) {
     meta.push({
-      property: "twitter:player:width",
-      content: playerCard.playerCardPlayerWidth + "",
+      property: 'twitter:player:width',
+      content: playerCard.playerCardPlayerWidth + '',
     });
   }
   // twitter:player:height
   if (playerCard.playerCardPlayerHeight) {
     meta.push({
-      property: "twitter:player:height",
-      content: playerCard.playerCardPlayerHeight + "",
+      property: 'twitter:player:height',
+      content: playerCard.playerCardPlayerHeight + '',
     });
   }
   // twitter:image
   if (playerCard.playerCardImage) {
     meta.push({
-      property: "twitter:image",
+      property: 'twitter:image',
       content: playerCard.playerCardImage,
     });
   }
   // twitter:image:alt
   if (playerCard.playerCardImageAlt) {
     meta.push({
-      property: "twitter:image:alt",
+      property: 'twitter:image:alt',
       content: playerCard.playerCardImageAlt,
     });
   }
@@ -1391,7 +1355,7 @@ export type TwitterAppCardType = {
 function createTwitterAppCardMetadataObjects(
   appCard: TwitterAppCardType,
   fallbackTitle?: string,
-  fallbackDescription?: string
+  fallbackDescription?: string,
 ): MetaProperty[] {
   if (!appCard) {
     return [];
@@ -1399,122 +1363,113 @@ function createTwitterAppCardMetadataObjects(
   const meta: MetaProperty[] = [];
   // twitter:card
   meta.push({
-    property: "twitter:card",
-    content: "app",
+    property: 'twitter:card',
+    content: 'app',
   });
   // twitter:site
   if (appCard.appCardSiteUsername) {
     meta.push({
-      property: "twitter:site",
+      property: 'twitter:site',
       content: appCard.appCardSiteUsername,
     });
   }
   // twitter:app:name:iphone
   if (appCard.appCardAppNameIphone) {
     meta.push({
-      property: "twitter:app:name:iphone",
+      property: 'twitter:app:name:iphone',
       content: appCard.appCardAppNameIphone,
     });
-  } else if (
-    fallbackTitle &&
-    (appCard.appCardAppIdIphone || appCard.appCardAppUrlIphone)
-  ) {
+  } else if (fallbackTitle && (appCard.appCardAppIdIphone || appCard.appCardAppUrlIphone)) {
     // Use fallback title if they gave iphone details but left out the title.
     meta.push({
-      property: "twitter:app:name:iphone",
+      property: 'twitter:app:name:iphone',
       content: fallbackTitle,
     });
   }
   // twitter:app:name:ipad
   if (appCard.appCardAppNameIpad) {
     meta.push({
-      property: "twitter:app:name:ipad",
+      property: 'twitter:app:name:ipad',
       content: appCard.appCardAppNameIpad,
     });
-  } else if (
-    fallbackTitle &&
-    (appCard.appCardAppIdIpad || appCard.appCardAppUrlIpad)
-  ) {
+  } else if (fallbackTitle && (appCard.appCardAppIdIpad || appCard.appCardAppUrlIpad)) {
     // Use fallback title if they gave ipad details but left out the title.
     meta.push({
-      property: "twitter:app:name:ipad",
+      property: 'twitter:app:name:ipad',
       content: fallbackTitle,
     });
   }
   // twitter:app:name:googleplay
   if (appCard.appCardAppNameGoogleplay) {
     meta.push({
-      property: "twitter:app:name:googleplay",
+      property: 'twitter:app:name:googleplay',
       content: appCard.appCardAppNameGoogleplay,
     });
-  } else if (
-    fallbackTitle &&
-    (appCard.appCardAppIdGoogleplay || appCard.appCardAppUrlGoogleplay)
-  ) {
+  } else if (fallbackTitle && (appCard.appCardAppIdGoogleplay || appCard.appCardAppUrlGoogleplay)) {
     // Use fallback title if they gave googleplay details but left out the title.
     meta.push({
-      property: "twitter:app:name:googleplay",
+      property: 'twitter:app:name:googleplay',
       content: fallbackTitle,
     });
   }
   // twitter:description
   if (appCard.appCardDescription) {
     meta.push({
-      property: "twitter:description",
+      property: 'twitter:description',
       content: appCard.appCardDescription,
     });
   } else if (fallbackDescription) {
     meta.push({
-      property: "twitter:description",
+      property: 'twitter:description',
       content: fallbackDescription,
     });
   }
   // twitter:app:id:iphone
   if (appCard.appCardAppIdIphone) {
     meta.push({
-      property: "twitter:app:id:iphone",
+      property: 'twitter:app:id:iphone',
       content: appCard.appCardAppIdIphone,
     });
   }
   // twitter:app:id:ipad
   if (appCard.appCardAppIdIpad) {
     meta.push({
-      property: "twitter:app:id:ipad",
+      property: 'twitter:app:id:ipad',
       content: appCard.appCardAppIdIpad,
     });
   }
   // twitter:app:id:googleplay
   if (appCard.appCardAppIdGoogleplay) {
     meta.push({
-      property: "twitter:app:id:googleplay",
+      property: 'twitter:app:id:googleplay',
       content: appCard.appCardAppIdGoogleplay,
     });
   }
   // twitter:app:url:iphone
   if (appCard.appCardAppUrlIphone) {
     meta.push({
-      property: "twitter:app:url:iphone",
+      property: 'twitter:app:url:iphone',
       content: appCard.appCardAppUrlIphone,
     });
   }
   // twitter:app:url:ipad
   if (appCard.appCardAppUrlIpad) {
     meta.push({
-      property: "twitter:app:url:ipad",
+      property: 'twitter:app:url:ipad',
       content: appCard.appCardAppUrlIpad,
     });
   }
   // twitter:app:country
   if (appCard.appCardAppCountry) {
     meta.push({
-      property: "twitter:app:country",
+      property: 'twitter:app:country',
       content: appCard.appCardAppCountry,
     });
   }
   // twitter:app:url:googleplay
   if (appCard.appCardAppUrlGoogleplay) {
     meta.push({
-      property: "twitter:app:url:googleplay",
+      property: 'twitter:app:url:googleplay',
       content: appCard.appCardAppUrlGoogleplay,
     });
   }
@@ -1554,22 +1509,22 @@ function createGoogleMetadataObjects(data?: GoogleMetadata): MetaProperty[] {
 
   if (data.noSiteLinksSearchBox) {
     meta.push({
-      property: "google",
-      content: "nositelinkssearchbox",
+      property: 'google',
+      content: 'nositelinkssearchbox',
     });
   }
 
   if (data.noTranslate) {
     meta.push({
-      property: "google",
-      content: "notranslate",
+      property: 'google',
+      content: 'notranslate',
     });
   }
 
   if (data.noPageReadAloud) {
     meta.push({
-      property: "google",
-      content: "nopagereadaloud",
+      property: 'google',
+      content: 'nopagereadaloud',
     });
   }
 
