@@ -5,7 +5,7 @@ export interface SuperSEOProps {
   // === Standard Meta ===
   /** The title of the page. */
   title?: string;
-  /** Specify a description. This is shown in Google results and should be 50-160 characters long. Anything beyond that length will be truncated with an ellipsis "...". */
+  /** Specify a description. This is shown in Google results and should be 50-160 characters long. Anything beyond that length will be truncated with an ellipsis "..." by most search engines. */
   description?: string;
   /** Specify the site language as an [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes), such as `en` for English. */
   lang?: string;

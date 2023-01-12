@@ -92,7 +92,7 @@ Provide as little as a `title` and `description`, and go from there.
 | Prop                     | Type                | Description                                                                                                                                                                                                                                                                                                                                           |
 | ------------------------ | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `title`                  | `string`            | The title of the page.                                                                                                                                                                                                                                                                                                                                |
-| `description`            | `string`            | Specify a description. This is shown in Google results and should be 50-160 characters long. Anything beyond that length will be truncated with an ellipsis "...".                                                                                                                                                                                    |
+| `description`            | `string`            | Specify a description. This is shown in Google results and should be 50-160 characters long. Anything beyond that length will be truncated with an ellipsis "..." by most search engines.                                                                                                                                                             |
 | `lang`                   | `string`            | Specify the site language as an [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes), such as `en` for English.                                                                                                                                                                                                           |
 | `openGraph`              | `OpenGraphMetadata` | Provide an [OpenGraphMetadata](https://justinmahar.github.io/react-super-seo/?path=/story/components-superseo--page#opengraph-prop-opengraphmetadata) object (see below). [OpenGraph](https://ogp.me/) (Facebook) metadata. Will fall back to use title, description, and general "website" type if each respective OpenGraph value is not specified. |
 | `twitter`                | `TwitterMetadata`   | Provide a [TwitterMetadata](https://justinmahar.github.io/react-super-seo/?path=/story/components-superseo--page#twitter-prop-twittermetadata) object (see below).                                                                                                                                                                                    |
@@ -349,22 +349,29 @@ This will be rendered as:
 
 ```html
 <html lang="en" data-react-helmet="lang">
+
   <head>
+
     <title>SEO | React Super SEO</title>
+
     <meta
       name="description"
       content="React SEO component with OpenGraph and Twitter Cards support."
       data-react-helmet="true"
     />
+
     <meta property="og:title" content="SEO | React Super SEO" data-react-helmet="true" />
+
     <meta property="og:type" content="website" data-react-helmet="true" />
+
     <meta
       property="og:description"
       content="React SEO component with OpenGraph and Twitter Cards support."
       data-react-helmet="true"
     />
+
   </head>
-  ...
+   ...
 </html>
 ```
 
@@ -402,38 +409,57 @@ This will be rendered as:
 
 ```html
 <html lang="en" data-react-helmet="lang">
+
   <head>
+
     <title>SEO | React Super SEO</title>
+
     <meta
       name="description"
       content="React SEO component with OpenGraph and Twitter Cards support."
       data-react-helmet="true"
     />
+
     <meta property="og:title" content="SEO | React Super SEO" data-react-helmet="true" />
+
     <meta property="og:type" content="website" data-react-helmet="true" />
+
     <meta property="og:image" content="http://placekitten.com/1200/630" data-react-helmet="true" />
+
     <meta property="og:image:url" content="http://placekitten.com/1200/630" data-react-helmet="true" />
+
     <meta property="og:image:type" content="image/jpeg" data-react-helmet="true" />
+
     <meta property="og:image:width" content="1200" data-react-helmet="true" />
+
     <meta property="og:image:height" content="630" data-react-helmet="true" />
+
     <meta property="og:image:alt" content="Kittens" data-react-helmet="true" />
+
     <meta
       property="og:description"
       content="React SEO component with OpenGraph and Twitter Cards support."
       data-react-helmet="true"
     />
+
     <meta property="twitter:card" content="summary" data-react-helmet="true" />
+
     <meta property="twitter:site" content="justinmahar" data-react-helmet="true" />
+
     <meta property="twitter:title" content="SEO | React Super SEO" data-react-helmet="true" />
+
     <meta
       property="twitter:description"
       content="React SEO component with OpenGraph and Twitter Cards support."
       data-react-helmet="true"
     />
+
     <meta property="twitter:image" content="http://placekitten.com/1200/630" data-react-helmet="true" />
+
     <meta property="twitter:image:alt" content="Kittens" data-react-helmet="true" />
+
   </head>
-  ...
+   ...
 </html>
 ```
 
