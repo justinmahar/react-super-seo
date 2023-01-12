@@ -13,7 +13,7 @@ export interface SuperSEOProps {
   // See: https://ogp.me/
   // Use https://developers.facebook.com/tools/debug/ to validate.
   /**
-   * Provide an [OpenGraphMetadata](https://justinmahar.github.io/react-super-seo/SuperSEO#opengraph-prop-opengraphmetadata) object.
+   * Provide an [OpenGraphMetadata](https://justinmahar.github.io/react-super-seo/?path=/story/components-superseo--page#opengraph-prop-opengraphmetadata) object.
    *
    * [OpenGraph](https://ogp.me/) (Facebook) metadata. Will fall back to use title, description, and general "website" type if each respective OpenGraph value is not specified.
    */
@@ -22,7 +22,7 @@ export interface SuperSEOProps {
   // See: https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/markup.html
   // Use https://cards-dev.twitter.com/validator to validate
   /**
-   * Provide a [TwitterMetadata](https://justinmahar.github.io/react-super-seo/SuperSEO#twitter-prop-twittermetadata) object.
+   * Provide a [TwitterMetadata](https://justinmahar.github.io/react-super-seo/?path=/story/components-superseo--page#twitter-prop-twittermetadata) object.
    *
    * Twitter metadata. Uses the [Cards markup](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/markup.html) to enhance tweets. Twitter will check for the meta properties you specify here and render a nice-looking card for you.
    *
@@ -38,7 +38,7 @@ export interface SuperSEOProps {
    */
   twitter?: TwitterMetadata;
   /**
-   * Provide a [GoogleMetadata](https://justinmahar.github.io/react-super-seo/SuperSEO#google-prop-googlemetadata) object.
+   * Provide a [GoogleMetadata](https://justinmahar.github.io/react-super-seo/?path=/story/components-superseo--page#google-prop-googlemetadata) object.
    *
    * Google-specific metadata. These meta tags all use meta name `google`.
    *
@@ -72,7 +72,7 @@ export interface SuperSEOProps {
    */
   robots?: string;
   /**
-   * This meta tag control the behavior of search engine crawling and indexing. See [documentation from Google](https://support.google.com/webmasters/answer/79812?hl=en).
+   * This meta tag controls the behavior of search engine crawling and indexing. See [documentation from Google](https://support.google.com/webmasters/answer/79812?hl=en).
    *
    * The <meta name="robots"> tag applies to all search engines, while the <meta name="googlebot"> tag is specific to Google.
    *
@@ -147,7 +147,7 @@ export interface SuperSEOProps {
 }
 
 /**
- * See documentation: [SuperSEO](https://justinmahar.github.io/react-super-seo/SuperSEO)
+ * See documentation: [SuperSEO](https://justinmahar.github.io/react-super-seo/?path=/story/components-superseo--page)
  *
  * An SEO component that adds a `title`, `description`, [OpenGraph](https://ogp.me/), and [Twitter Cards](https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards) meta properties to the `head`.
  *

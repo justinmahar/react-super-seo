@@ -1,1 +1,1 @@
-export * from './components/SuperSEO';
+export * from './components/Example';

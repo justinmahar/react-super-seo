@@ -1,11 +1,6 @@
----
-name: SuperSEO
-route: /SuperSEO
-# menu: Components
----
+import { Meta } from '@storybook/addon-docs';
 
-import { Playground, Props } from "docz";
-import { SuperSEO } from "./SuperSEO";
+<Meta title="Components/SuperSEO" />
 
 <h1>SuperSEO</h1>
 
@@ -29,52 +24,89 @@ Uses sensible fallbacks where possible and features automatic [MIME type inferen
 
 Includes full TypeScript type definitions and rich documentation, inside and out. 🙌
 
+## Table of Contents
+
+- [Description](#description)
+- [Table of Contents](#table-of-contents)
+- [Usage](#usage)
+- [Props](#props)
+  - [`openGraph` Prop (OpenGraphMetadata)](#opengraph-prop-opengraphmetadata)
+    - [`ogTypeObject` Types](#ogtypeobject-types)
+      - [OpenGraphTypeArticle](#opengraphtypearticle)
+      - [OpenGraphTypeBook](#opengraphtypebook)
+      - [OpenGraphTypeProfile](#opengraphtypeprofile)
+      - [OpenGraphTypeWebsite](#opengraphtypewebsite)
+      - [MetaPropertiesFunction](#metapropertiesfunction)
+        - [MetaProperty](#metaproperty)
+    - [ogImage Types](#ogimage-types)
+      - [OpenGraphImage](#opengraphimage)
+    - [ogAudio Types](#ogaudio-types)
+      - [OpenGraphAudio](#opengraphaudio)
+    - [ogVideo](#ogvideo)
+      - [OpenGraphVideo](#opengraphvideo)
+  - [`twitter` Prop (TwitterMetadata)](#twitter-prop-twittermetadata)
+    - [TwitterSummaryCardType](#twittersummarycardtype)
+    - [TwitterSummaryCardWithLargeImageCardType](#twittersummarycardwithlargeimagecardtype)
+    - [TwitterPlayerCardType](#twitterplayercardtype)
+    - [TwitterAppCardType](#twitterappcardtype)
+  - [`google` Prop (GoogleMetadata)](#google-prop-googlemetadata)
+- [Custom Meta Tags](#custom-meta-tags)
+- [Examples](#examples)
+  - [Fallbacks](#fallbacks)
+  - [Specifying OpenGraph and Twitter](#specifying-opengraph-and-twitter)
+
 ## Usage
 
 ```jsx
-import { SuperSEO } from "react-super-seo";
+import { SuperSEO } from 'react-super-seo';
 ```
 
 Provide as little as a `title` and `description`, and go from there.
 
-<Playground>
-  <div>
-    The SuperSEO component is being used on this page. Try changing the title
-    below.
-  </div>
-  <SuperSEO
-    title="SEO | React Super SEO"
-    description="React SEO component with OpenGraph and Twitter Cards support."
-    lang="en"
-    openGraph={{
-      ogImage: {
-        ogImage: "http://placekitten.com/1200/630",
-        ogImageAlt: "Kittens",
-        ogImageWidth: 1200,
-        ogImageHeight: 630,
-        ogImageType: "image/jpeg",
-      },
-    }}
-    twitter={{
-      twitterSummaryCard: {
-        summaryCardImage: "http://placekitten.com/1200/630",
-        summaryCardImageAlt: "Kittens",
-        summaryCardSiteUsername: "justinmahar",
-      },
-    }}
-  />
-</Playground>
-
-<small>
-  Note: You can edit the source above. Your changes will be rendered
-  immediately.
-</small>
+```jsx
+<SuperSEO
+  title="SEO | React Super SEO"
+  description="React SEO component with OpenGraph and Twitter Cards support."
+  lang="en"
+  openGraph={{
+    ogImage: {
+      ogImage: 'http://placekitten.com/1200/630',
+      ogImageAlt: 'Kittens',
+      ogImageWidth: 1200,
+      ogImageHeight: 630,
+      ogImageType: 'image/jpeg',
+    },
+  }}
+  twitter={{
+    twitterSummaryCard: {
+      summaryCardImage: 'http://placekitten.com/1200/630',
+      summaryCardImageAlt: 'Kittens',
+      summaryCardSiteUsername: 'justinmahar',
+    },
+  }}
+/>
+```
 
 ## Props
 
-<Props of={SuperSEO} />
+| Prop                     | Type                | Description                                                                                                                                                                                                                                                                                                                                           |
+| ------------------------ | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title`                  | `string`            | The title of the page.                                                                                                                                                                                                                                                                                                                                |
+| `description`            | `string`            | Specify a description. This is shown in Google results and should be 50-160 characters long. Anything beyond that length will be truncated with an ellipsis "...".                                                                                                                                                                                    |
+| `lang`                   | `string`            | Specify the site language as an [ISO 639-1 language code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes), such as `en` for English.                                                                                                                                                                                                           |
+| `openGraph`              | `OpenGraphMetadata` | Provide an [OpenGraphMetadata](https://justinmahar.github.io/react-super-seo/?path=/story/components-superseo--page#opengraph-prop-opengraphmetadata) object (see below). [OpenGraph](https://ogp.me/) (Facebook) metadata. Will fall back to use title, description, and general "website" type if each respective OpenGraph value is not specified. |
+| `twitter`                | `TwitterMetadata`   | Provide a [TwitterMetadata](https://justinmahar.github.io/react-super-seo/?path=/story/components-superseo--page#twitter-prop-twittermetadata) object (see below).                                                                                                                                                                                    |
+| `google`                 | `GoogleMetadata`    | Provide a [GoogleMetadata](https://justinmahar.github.io/react-super-seo/?path=/story/components-superseo--page#google-prop-googlemetadata) object (see below).                                                                                                                                                                                       |
+| `robots`                 | `string`            | This meta tag controls the behavior of search engine crawling and indexing. See [documentation from Google](https://support.google.com/webmasters/answer/79812?hl=en).                                                                                                                                                                                |
+| `googlebot`              | `string`            | This Google-specific meta tag controls the behavior of search engine crawling and indexing. See [documentation from Google](https://support.google.com/webmasters/answer/79812?hl=en).                                                                                                                                                                |
+| `googleSiteVerification` | `string`            | You can use this tag on the top-level page of your site to verify ownership for Search Console. See [documentation from Google](https://support.google.com/webmasters/answer/79812?hl=en).                                                                                                                                                            |
+| `contentType`            | `string`            | Specifies the character encoding for the document, such as `text/html; charset=UTF-8`. See [documentation from Google](https://support.google.com/webmasters/answer/79812?hl=en).                                                                                                                                                                     |
+| `charset`                | `string`            | Specifies the character encoding for the HTML document. See [documentation from Google](https://support.google.com/webmasters/answer/79812?hl=en).                                                                                                                                                                                                    |
+| `viewport`               | `string`            | This tag tells the browser how to render a page on a mobile device. Presence of this tag indicates to Google that the page is mobile friendly. See [documentation from Google](https://support.google.com/webmasters/answer/79812?hl=en).                                                                                                             |
+| `rating`                 | `string`            | Provide a rating for the site. For instance, use `adult` or [RTA rating](https://www.rtalabel.org/#) `RTA-5042-1996-1400-1577-RTA` if it contains adult content, to signal that it be filtered by SafeSearch results. See [documentation from Google](https://support.google.com/webmasters/answer/79812?hl=en).                                      |
+| `children`               | `React.ReactNode`   | Provide children to add custom meta tags in addition to the ones above, or for anything else you'd like to add to `head`. Children are rendered directly inside head.                                                                                                                                                                                 |
 
-> Note: Expand each prop for more information.
+All props are optional.
 
 ### `openGraph` Prop (OpenGraphMetadata)
 
@@ -291,10 +323,7 @@ If you need something not covered above, you can always provide them as children
 Anything you wrap in the `SuperSEO` component will be rendered to the `head` element for you. Sky's the limit. 🚀
 
 ```jsx
-<SuperSEO
-  title="My Page"
-  description="An awesome page that does a lot of cool stuff"
->
+<SuperSEO title="My Page" description="An awesome page that does a lot of cool stuff">
   <meta name="custom-meta" content="my-value" />
   <meta property="custom-meta-2" content="my-other-value" />
 </SuperSEO>
@@ -327,11 +356,7 @@ This will be rendered as:
       content="React SEO component with OpenGraph and Twitter Cards support."
       data-react-helmet="true"
     />
-    <meta
-      property="og:title"
-      content="SEO | React Super SEO"
-      data-react-helmet="true"
-    />
+    <meta property="og:title" content="SEO | React Super SEO" data-react-helmet="true" />
     <meta property="og:type" content="website" data-react-helmet="true" />
     <meta
       property="og:description"
@@ -356,18 +381,18 @@ The following shows how you can specify `openGraph` and `twitter` props to build
   lang="en"
   openGraph={{
     ogImage: {
-      ogImage: "http://placekitten.com/1200/630",
-      ogImageAlt: "Kittens",
+      ogImage: 'http://placekitten.com/1200/630',
+      ogImageAlt: 'Kittens',
       ogImageWidth: 1200,
       ogImageHeight: 630,
-      ogImageType: "image/jpeg",
+      ogImageType: 'image/jpeg',
     },
   }}
   twitter={{
     twitterSummaryCard: {
-      summaryCardImage: "http://placekitten.com/1200/630",
-      summaryCardImageAlt: "Kittens",
-      summaryCardSiteUsername: "justinmahar",
+      summaryCardImage: 'http://placekitten.com/1200/630',
+      summaryCardImageAlt: 'Kittens',
+      summaryCardSiteUsername: 'justinmahar',
     },
   }}
 />
@@ -384,27 +409,11 @@ This will be rendered as:
       content="React SEO component with OpenGraph and Twitter Cards support."
       data-react-helmet="true"
     />
-    <meta
-      property="og:title"
-      content="SEO | React Super SEO"
-      data-react-helmet="true"
-    />
+    <meta property="og:title" content="SEO | React Super SEO" data-react-helmet="true" />
     <meta property="og:type" content="website" data-react-helmet="true" />
-    <meta
-      property="og:image"
-      content="http://placekitten.com/1200/630"
-      data-react-helmet="true"
-    />
-    <meta
-      property="og:image:url"
-      content="http://placekitten.com/1200/630"
-      data-react-helmet="true"
-    />
-    <meta
-      property="og:image:type"
-      content="image/jpeg"
-      data-react-helmet="true"
-    />
+    <meta property="og:image" content="http://placekitten.com/1200/630" data-react-helmet="true" />
+    <meta property="og:image:url" content="http://placekitten.com/1200/630" data-react-helmet="true" />
+    <meta property="og:image:type" content="image/jpeg" data-react-helmet="true" />
     <meta property="og:image:width" content="1200" data-react-helmet="true" />
     <meta property="og:image:height" content="630" data-react-helmet="true" />
     <meta property="og:image:alt" content="Kittens" data-react-helmet="true" />
@@ -414,31 +423,15 @@ This will be rendered as:
       data-react-helmet="true"
     />
     <meta property="twitter:card" content="summary" data-react-helmet="true" />
-    <meta
-      property="twitter:site"
-      content="justinmahar"
-      data-react-helmet="true"
-    />
-    <meta
-      property="twitter:title"
-      content="SEO | React Super SEO"
-      data-react-helmet="true"
-    />
+    <meta property="twitter:site" content="justinmahar" data-react-helmet="true" />
+    <meta property="twitter:title" content="SEO | React Super SEO" data-react-helmet="true" />
     <meta
       property="twitter:description"
       content="React SEO component with OpenGraph and Twitter Cards support."
       data-react-helmet="true"
     />
-    <meta
-      property="twitter:image"
-      content="http://placekitten.com/1200/630"
-      data-react-helmet="true"
-    />
-    <meta
-      property="twitter:image:alt"
-      content="Kittens"
-      data-react-helmet="true"
-    />
+    <meta property="twitter:image" content="http://placekitten.com/1200/630" data-react-helmet="true" />
+    <meta property="twitter:image:alt" content="Kittens" data-react-helmet="true" />
   </head>
   ...
 </html>
