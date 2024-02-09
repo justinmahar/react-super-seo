@@ -131,7 +131,7 @@ Wrap custom meta tags with `SuperSEO`. They will be rendered directly inside the
 </SuperSEO>
 ```
 
-Refer to the [SuperSEO component](https://justinmahar.github.io/react-super-seo/?path=/story/components-superseo--page) usage for all available options.
+Refer to the [SuperSEO component](https://justinmahar.github.io/react-super-seo/?path=/story/components-superseo--docs) usage for all available options.
 
 <!-- [lock:typescript] 🚫--------------------------------------- -->
 
@@ -167,4 +167,4 @@ If you found this project helpful, let the community know by giving it a [star](
 
 ## License
 
-See [LICENSE.md](https://justinmahar.github.io/react-super-seo/?path=/story/license--page).
+See [LICENSE.md](https://justinmahar.github.io/react-super-seo/?path=/docs/license--docs).
