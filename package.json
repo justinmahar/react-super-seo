@@ -1,6 +1,6 @@
 {
   "name": "react-super-seo",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "coreVersion": "3.0.7",
   "author": "Justin Mahar <contact@justinmahar.com>",
   "description": "The React SEO component that handles metadata so you don't have to. Supports Google, OpenGraph, Twitter, and beyond. 🚀",
