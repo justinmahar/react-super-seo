@@ -153,7 +153,7 @@ export interface SuperSEOProps {
  *
  * Also supports adding an [ISO 639-1](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) `lang` attribute to the `html` element.
  *
- * Uses sensible fallbacks where possible and features automatic [MIME type inference](https://justinmahar.github.io/react-super-seo/list-of-mime-types) for media URLs.
+ * Uses sensible fallbacks where possible and features automatic [MIME type inference](https://justinmahar.github.io/react-super-seo/?path=/story/docs-list-of-mime-types--page) for media URLs.
  */
 export function SuperSEO(props: SuperSEOProps): JSX.Element {
   const title = props.title;
